@@ -1,71 +1,207 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SeacontrolTV - Navegação</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Seacontrol TV</title>
+  <meta name="description" content="Página inicial com atalhos para as pastas Seacontrol TV." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #0a192f;
-      color: #f1f1f1;
-      margin: 0;
-      padding: 2rem;
+    :root{
+      --bg: #0b1120;
+      --bg-2: #0f172a;
+      --card: #111827;
+      --muted: #9ca3af;
+      --text: #e5e7eb;
+      --accent: #60a5fa;
+      --accent-2: #a78bfa;
+      --ring: #93c5fd55;
     }
-    h1 {
-      text-align: center;
-      color: #64ffda;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      background:
+        radial-gradient(1200px 600px at 100% -10%, #4f46e550 0%, transparent 60%),
+        radial-gradient(800px 400px at -10% 110%, #2563eb40 0%, transparent 55%),
+        var(--bg);
+      color:var(--text);
     }
-    .folder {
-      margin: 1rem 0;
-      padding: 1rem;
-      background: #112240;
-      border-radius: 8px;
+    .container{max-width:1200px; margin:0 auto; padding:24px}
+    header{
+      border:1px solid #ffffff10; background: linear-gradient(135deg, #111827aa, #0b1120aa);
+      padding:28px 24px; border-radius:24px; position:relative; overflow:hidden;
+      box-shadow: 0 20px 80px #00000050, inset 0 0 0 1px #ffffff10;
     }
-    .folder h2 {
-      margin: 0 0 0.5rem;
-      color: #ffd369;
+    header::after{
+      content:""; position:absolute; inset:auto -10% -50% -10%; height:200%;
+      background: radial-gradient(600px 160px at 50% 0%, #60a5fa30 0%, transparent 60%);
+      pointer-events:none;
     }
-    ul {
-      list-style: none;
-      padding-left: 1rem;
+    .title{display:flex; align-items:center; gap:14px; flex-wrap:wrap}
+    .logo{
+      width:56px; height:56px; border-radius:16px;
+      background: conic-gradient(from 200deg, var(--accent), var(--accent-2), #22d3ee);
+      box-shadow: 0 10px 40px #00000070, 0 0 0 8px #ffffff0e;
+      display:grid; place-items:center; font-weight:800; color:#0b1120;
     }
-    li {
-      margin: 0.3rem 0;
+    .title h1{margin:0; font-size:clamp(28px, 4vw, 42px); letter-spacing:0.2px}
+    .subtitle{margin:8px 0 0; color:var(--muted)}
+
+    .section{margin-top:28px}
+    .section h2{font-size:18px; margin:0 0 14px; color:#d1d5db; letter-spacing:.3px}
+
+    .grid{display:grid; gap:14px; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));}
+
+    .card{
+      background:linear-gradient(180deg, #0b1224, #0a1020);
+      border:1px solid #ffffff12; border-radius:18px; padding:16px; text-decoration:none; color:inherit;
+      box-shadow: 0 10px 30px #00000050, inset 0 0 0 1px #ffffff08; position:relative; overflow:hidden;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
     }
-    a {
-      color: #64ffda;
-      text-decoration: none;
+    .card:hover{
+      transform: translateY(-3px);
+      border-color:#60a5fa60;
+      box-shadow: 0 18px 50px #00000070, 0 0 0 6px var(--ring);
     }
-    a:hover {
-      text-decoration: underline;
+    .card .badge{display:inline-block; font-size:12px; color:#c7d2fe; background:#312e81; padding:4px 8px; border-radius:999px; border:1px solid #ffffff1a}
+    .card h3{margin:10px 0 6px; font-size:18px}
+    .card p{margin:0; font-size:14px; color:var(--muted)}
+
+    .footer{margin-top:28px; color:#94a3b8; font-size:12px; text-align:center}
+
+    /* Pequeno filtro de pesquisa */
+    .toolbar{display:flex; gap:12px; align-items:center; margin-top:18px}
+    .search{
+      flex:1; background:#0b1224; border:1px solid #ffffff20; border-radius:12px; padding:12px 14px; color:var(--text);
+      outline:none; transition:border-color .15s; box-shadow: inset 0 0 0 1px #ffffff08
     }
+    .search:focus{border-color:#60a5fa}
+    .chips{display:flex; gap:10px; flex-wrap:wrap}
+    .chip{background:#0b1224; border:1px solid #ffffff1a; color:#cbd5e1; font-size:12px; padding:6px 10px; border-radius:999px; cursor:pointer}
+    .chip[aria-pressed="true"]{border-color:#60a5fa; color:#e5e7eb}
   </style>
 </head>
 <body>
-  <h1>📂 SeacontrolTV - Navegação</h1>
+  <div class="container">
+    <header>
+      <div class="title">
+        <div class="logo" aria-hidden="true">STV</div>
+        <div>
+          <h1>Seacontrol TV</h1>
+          <p class="subtitle">Escolhe a plataforma e entra diretamente na pasta.</p>
+        </div>
+      </div>
+      <div class="toolbar" role="region" aria-label="Ferramentas">
+        <input id="search" class="search" type="search" placeholder="Pesquisar pastas… (ex.: Ferry, TREX, TvMAX)" aria-label="Pesquisar pastas" />
+        <div class="chips" role="group" aria-label="Filtros rápidos">
+          <button class="chip" data-filter="Ferry">Ferry</button>
+          <button class="chip" data-filter="TREX">TREX</button>
+          <button class="chip" data-filter="TvMAX">TvMAX</button>
+        </div>
+      </div>
+    </header>
 
-  <!-- Pasta mytvonline2 -->
-  <div class="folder">
-    <h2>mytvonline2</h2>
-    <ul>
-      <li><a href="mytvonline2/Seacontrol/">Seacontrol</a></li>
-      <li><a href="mytvonline2/Ferryboat/">Ferryboat</a></li>
-      <li><a href="mytvonline2/Trex/">Trex</a></li>
-      <li><a href="mytvonline2/Ferryboat+Seacontrol/">Ferryboat + Seacontrol</a></li>
-    </ul>
+    <!-- MyTvOnline2 -->
+    <section class="section" aria-labelledby="h-mto2">
+      <h2 id="h-mto2">MyTvOnline2</h2>
+      <div class="grid" id="grid-mto2">
+        <a class="card item" href="./MyTvOnline2/Ferry+tvmay/" data-tags="mytvonline2 ferry tvmay">
+          <span class="badge">📁 Pasta</span>
+          <h3>Ferry + tvmay</h3>
+          <p>MyTvOnline2 · Coleção Ferry/tvmay</p>
+        </a>
+        <a class="card item" href="./MyTvOnline2/Ferry/" data-tags="mytvonline2 ferry">
+          <span class="badge">📁 Pasta</span>
+          <h3>Ferry</h3>
+          <p>MyTvOnline2</p>
+        </a>
+        <a class="card item" href="./MyTvOnline2/TREX/" data-tags="mytvonline2 trex">
+          <span class="badge">📁 Pasta</span>
+          <h3>TREX</h3>
+          <p>MyTvOnline2</p>
+        </a>
+        <a class="card item" href="./MyTvOnline2/TvMAX/" data-tags="mytvonline2 tvmax">
+          <span class="badge">📁 Pasta</span>
+          <h3>TvMAX</h3>
+          <p>MyTvOnline2</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- MyTvOnline3 -->
+    <section class="section" aria-labelledby="h-mto3">
+      <h2 id="h-mto3">MyTvOnline3</h2>
+      <div class="grid" id="grid-mto3">
+        <a class="card item" href="./MyTvOnline3/Ferry+TvMAX/" data-tags="mytvonline3 ferry tvmax">
+          <span class="badge">📁 Pasta</span>
+          <h3>Ferry + TvMAX</h3>
+          <p>MyTvOnline3 · Coleção Ferry/TvMAX</p>
+        </a>
+        <a class="card item" href="./MyTvOnline3/Ferry/" data-tags="mytvonline3 ferry">
+          <span class="badge">📁 Pasta</span>
+          <h3>Ferry</h3>
+          <p>MyTvOnline3</p>
+        </a>
+        <a class="card item" href="./MyTvOnline3/TREX/" data-tags="mytvonline3 trex">
+          <span class="badge">📁 Pasta</span>
+          <h3>TREX</h3>
+          <p>MyTvOnline3</p>
+        </a>
+        <a class="card item" href="./MyTvOnline3/TvMAX/" data-tags="mytvonline3 tvmax">
+          <span class="badge">📁 Pasta</span>
+          <h3>TvMAX</h3>
+          <p>MyTvOnline3</p>
+        </a>
+      </div>
+    </section>
+
+    <p class="footer">© <span id="y"></span> Seacontrol TV · GitHub Pages</p>
   </div>
 
-  <!-- Pasta mytvonline3 -->
-  <div class="folder">
-    <h2>mytvonline3</h2>
-    <ul>
-      <li><a href="mytvonline3/Seacontrol/">Seacontrol</a></li>
-      <li><a href="mytvonline3/Ferryboat/">Ferryboat</a></li>
-      <li><a href="mytvonline3/Trex/">Trex</a></li>
-      <li><a href="mytvonline3/Ferryboat+Seacontrol/">Ferryboat + Seacontrol</a></li>
-    </ul>
-  </div>
+  <script>
+    // Ano atual
+    document.getElementById('y').textContent = new Date().getFullYear();
 
+    // Pesquisa/filtragem simples por texto e chips
+    const search = document.getElementById('search');
+    const chips = Array.from(document.querySelectorAll('.chip'));
+    const items = Array.from(document.querySelectorAll('.item'));
+
+    function applyFilter(){
+      const q = search.value.trim().toLowerCase();
+      const activeChip = chips.find(c => c.getAttribute('aria-pressed') === 'true');
+      const chipTag = activeChip ? activeChip.dataset.filter.toLowerCase() : '';
+
+      items.forEach(el => {
+        const tags = el.dataset.tags;
+        const text = (el.textContent || '').toLowerCase();
+        const matchText = !q || text.includes(q);
+        const matchChip = !chipTag || tags.includes(chipTag);
+        el.style.display = (matchText && matchChip) ? '' : 'none';
+      });
+    }
+
+    search.addEventListener('input', applyFilter);
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const isActive = chip.getAttribute('aria-pressed') === 'true';
+        chips.forEach(c => c.setAttribute('aria-pressed', 'false'));
+        chip.setAttribute('aria-pressed', isActive ? 'false' : 'true');
+        applyFilter();
+      });
+    });
+
+    // Acessibilidade: tecla ESC limpa filtros
+    window.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape'){
+        search.value = '';
+        chips.forEach(c => c.setAttribute('aria-pressed', 'false'));
+        applyFilter();
+      }
+    });
+  </script>
 </body>
 </html>
