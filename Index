@@ -1,0 +1,118 @@
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  
+
+    
+      
+
+        
+SN
+
+        
+
+          
+Seu Nome
+
+          
+Desenvolvedor(a) • Portfólio • Open Source
+
+        
+
+      
+
+
+  <nav>
+    <a href="#projetos">Projetos</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#contato">Contato</a>
+    <a href="#blog">Blog</a>
+  </nav>
+</header>
+
+<main>
+  <section>
+    <div class="card">
+      <h2 id="projetos">Projetos em destaque</h2>
+      <p class="lead" style="margin-bottom:12px;color:var(--muted)">Alguns repositórios e demos — clique para ver no GitHub.</p>
+
+      <div class="projects">
+        <article class="project">
+          <h3><a href="#">Nome-do-projeto-1</a></h3>
+          <p>Pequena descrição do projeto, stack (HTML/CSS/JS, Python, etc.) e link para demo.</p>
+        </article>
+
+        <article class="project">
+          <h3><a href="#">Nome-do-projeto-2</a></h3>
+          <p>Descrição curta. Badge de status e instruções de uso no README.</p>
+        </article>
+
+        <article class="project">
+          <h3><a href="#">Nome-do-projeto-3</a></h3>
+          <p>Biblioteca / utilitário com exemplos e testes automatizados.</p>
+        </article>
+
+        <article class="project">
+          <h3><a href="#">Nome-do-projeto-4</a></h3>
+          <p>Ferramenta visual ou site estático com CI/CD configurado.</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <h2 id="sobre">Sobre</h2>
+      <p style="color:var(--muted)">Breve bio: quem é você, áreas de interesse, tecnologias favoritas e o que procura (colaborações, emprego, freelas).</p>
+      <ul style="color:var(--muted)">
+        <li>📍 Localização (cidade, país)</li>
+        <li>💼 Atualmente em: <em>Empresa / projeto</em></li>
+        <li>🛠 Tech: JavaScript, Python, React, Node, etc.</li>
+      </ul>
+    </div>
+  </section>
+
+  <aside>
+    <div class="card meta">
+      <div class="item"><strong>GitHub</strong><span><a href="#">@seu-usuario</a></span></div>
+      <div class="item"><strong>Email</strong><span><a href="mailto:seu@email.com">seu@email.com</a></span></div>
+      <div class="item"><strong>Último commit</strong><span id="last-commit">—</span></div>
+    </div>
+
+    <div class="card">
+      <h3 id="contato">Contato</h3>
+      <p style="color:var(--muted)">Quer conversar sobre um projeto? Me mande um e‑mail ou crie uma issue no repositório.</p>
+      <p style="margin-top:8px"><a href="#">Fale comigo</a></p>
+    </div>
+
+    <div class="card">
+      <h3 id="blog">Blog / Notas</h3>
+      <p style="color:var(--muted)">Se usar o GitHub Pages para posts, crie /_posts ou vincule a sua seção de blog aqui.</p>
+    </div>
+  </aside>
+</main>
+
+<footer>
+  <small>Feito com ❤️ — <a href="https://github.com/">GitHub</a> · <a href="#">Licença</a></small>
+</footer>
+
+
+  
+
+  
+  
+
+
+
