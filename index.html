@@ -1,66 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seacontrol TV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      color: #f1f5f9;
+    }
 
+    header {
+      background: linear-gradient(90deg, #2563eb, #9333ea);
+      padding: 40px 20px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
 
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+      font-weight: 700;
+    }
 
+    header p {
+      margin: 10px 0 0;
+      font-size: 1rem;
+      opacity: 0.9;
+    }
 
-  
-  
-  
-  
-  
-  
-  
+    main {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
 
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      border-left: 5px solid #3b82f6;
+      padding-left: 10px;
+    }
 
-  
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
 
-    
-      
+    .card {
+      background: #1e293b;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
 
-        
-STV
+    .card:hover {
+      transform: translateY(-5px);
+      background: #334155;
+    }
 
-        
+    .icon {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
 
-          
-Seacontrol TV
+    .card h3 {
+      margin: 10px 0 5px;
+      font-size: 1.2rem;
+      color: #facc15;
+    }
 
-          
-Clica para copiar o link do ficheiro de configuração.
+    .card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+    }
 
-        
+    .footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
 
-      
+    .copied {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #22c55e;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Seacontrol TV</h1>
+    <p>Clica num cartão para copiar o link do ficheiro de configuração</p>
+  </header>
 
-    
+  <main>
+    <section>
+      <h2>MyTvOnline2</h2>
+      <div class="grid">
+        <div class="card" data-link="./MyTvOnline2/Ferry+tvmay/config.enc2">
+          <div class="icon">📂</div>
+          <h3>Ferry + tvmay</h3>
+          <p>Configuração MyTvOnline2</p>
+        </div>
+        <div class="card" data-link="./MyTvOnline2/Ferry/config.enc2">
+          <div class="icon">📂</div>
+          <h3>Ferry</h3>
+          <p>Configuração MyTvOnline2</p>
+        </div>
+        <div class="card" data-link="./MyTvOnline2/TREX/config.enc2">
+          <div class="icon">📂</div>
+          <h3>TREX</h3>
+          <p>Configuração MyTvOnline2</p>
+        </div>
+        <div class="card" data-link="./MyTvOnline2/TvMAX/config.enc2">
+          <div class="icon">📂</div>
+          <h3>TvMAX</h3>
+          <p>Configuração MyTvOnline2</p>
+        </div>
+      </div>
+    </section>
 
-<!-- MyTvOnline2 -->
-<section class="section" aria-labelledby="h-mto2">
-  <h2 id="h-mto2">MyTvOnline2</h2>
-  <div class="grid" id="grid-mto2">
-    <div class="card" data-link="./MyTvOnline2/Ferry+tvmay/config.enc2">📄 Ferry + tvmay</div>
-    <div class="card" data-link="./MyTvOnline2/Ferry/config.enc2">📄 Ferry</div>
-    <div class="card" data-link="./MyTvOnline2/TREX/config.enc2">📄 TREX</div>
-    <div class="card" data-link="./MyTvOnline2/TvMAX/config.enc2">📄 TvMAX</div>
-  </div>
-</section>
+    <section>
+      <h2>MyTvOnline3</h2>
+      <div class="grid">
+        <div class="card" data-link="./MyTvOnline3/Ferry+TvMAX/config.enc3">
+          <div class="icon">📂</div>
+          <h3>Ferry + TvMAX</h3>
+          <p>Configuração MyTvOnline3</p>
+        </div>
+        <div class="card" data-link="./MyTvOnline3/Ferry/config.enc3">
+          <div class="icon">📂</div>
+          <h3>Ferry</h3>
+          <p>Configuração MyTvOnline3</p>
+        </div>
+        <div class="card" data-link="./MyTvOnline3/TREX/config.enc3">
+          <div class="icon">📂</div>
+          <h3>TREX</h3>
+          <p>Configuração MyTvOnline3</p>
+        </div>
+        <div class="card" data-link="./MyTvOnline3/TvMAX/config.enc3">
+          <div class="icon">📂</div>
+          <h3>TvMAX</h3>
+          <p>Configuração MyTvOnline3</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
-<!-- MyTvOnline3 -->
-<section class="section" aria-labelledby="h-mto3">
-  <h2 id="h-mto3">MyTvOnline3</h2>
-  <div class="grid" id="grid-mto3">
-    <div class="card" data-link="./MyTvOnline3/Ferry+TvMAX/config.enc3">📄 Ferry + TvMAX</div>
-    <div class="card" data-link="./MyTvOnline3/Ferry/config.enc3">📄 Ferry</div>
-    <div class="card" data-link="./MyTvOnline3/TREX/config.enc3">📄 TREX</div>
-    <div class="card" data-link="./MyTvOnline3/TvMAX/config.enc3">📄 TvMAX</div>
-  </div>
-</section>
+  <div class="footer">© <span id="year"></span> Seacontrol TV · GitHub Pages</div>
 
-<p class="footer">© <span id="y"></span> Seacontrol TV · GitHub Pages</p>
+  <div class="copied" id="copied-msg">Link copiado!</div>
 
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-  
+    const cards = document.querySelectorAll('.card');
+    const copiedMsg = document.getElementById('copied-msg');
 
-  
-
-
-
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const link = card.dataset.link;
+        navigator.clipboard.writeText(link).then(() => {
+          copiedMsg.style.display = 'block';
+          setTimeout(() => copiedMsg.style.display = 'none', 2000);
+        }).catch(() => {
+          prompt('Copie o link abaixo:', link);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
