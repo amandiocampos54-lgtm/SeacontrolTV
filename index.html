@@ -115,22 +115,22 @@
     <section>
       <h2>MyTvOnline2</h2>
       <div class="grid">
-        <div class="card" data-link="./MyTvOnline2/Ferry+tvmay/config.enc2">
+        <div class="card" data-link="https://amandiocampos54-lgtm.github.io/SeacontrolTV/MyTvOnline2/Ferry+tvmay/config.enc2">
           <div class="icon">📂</div>
           <h3>Ferry + tvmay</h3>
           <p>Configuração MyTvOnline2</p>
         </div>
-        <div class="card" data-link="./MyTvOnline2/Ferry/config.enc2">
+        <div class="card" data-link="https://amandiocampos54-lgtm.github.io/SeacontrolTV/MyTvOnline2/Ferry/config.enc2">
           <div class="icon">📂</div>
           <h3>Ferry</h3>
           <p>Configuração MyTvOnline2</p>
         </div>
-        <div class="card" data-link="./MyTvOnline2/TREX/config.enc2">
+        <div class="card" data-link="https://amandiocampos54-lgtm.github.io/SeacontrolTV/MyTvOnline2/TREX/config.enc2">
           <div class="icon">📂</div>
           <h3>TREX</h3>
           <p>Configuração MyTvOnline2</p>
         </div>
-        <div class="card" data-link="./MyTvOnline2/TvMAX/config.enc2">
+        <div class="card" data-link="https://amandiocampos54-lgtm.github.io/SeacontrolTV/MyTvOnline2/TvMAX/config.enc2">
           <div class="icon">📂</div>
           <h3>TvMAX</h3>
           <p>Configuração MyTvOnline2</p>
@@ -141,22 +141,22 @@
     <section>
       <h2>MyTvOnline3</h2>
       <div class="grid">
-        <div class="card" data-link="./MyTvOnline3/Ferry+TvMAX/config.enc3">
+        <div class="card" data-link="https://amandiocampos54-lgtm.github.io/SeacontrolTV/MyTvOnline3/Ferry+TvMAX/config.enc3">
           <div class="icon">📂</div>
           <h3>Ferry + TvMAX</h3>
           <p>Configuração MyTvOnline3</p>
         </div>
-        <div class="card" data-link="./MyTvOnline3/Ferry/config.enc3">
+        <div class="card" data-link="https://amandiocampos54-lgtm.github.io/SeacontrolTV/MyTvOnline3/Ferry/config.enc3">
           <div class="icon">📂</div>
           <h3>Ferry</h3>
           <p>Configuração MyTvOnline3</p>
         </div>
-        <div class="card" data-link="./MyTvOnline3/TREX/config.enc3">
+        <div class="card" data-link="https://amandiocampos54-lgtm.github.io/SeacontrolTV/MyTvOnline3/TREX/config.enc3">
           <div class="icon">📂</div>
           <h3>TREX</h3>
           <p>Configuração MyTvOnline3</p>
         </div>
-        <div class="card" data-link="./MyTvOnline3/TvMAX/config.enc3">
+        <div class="card" data-link="https://amandiocampos54-lgtm.github.io/SeacontrolTV/MyTvOnline3/TvMAX/config.enc3">
           <div class="icon">📂</div>
           <h3>TvMAX</h3>
           <p>Configuração MyTvOnline3</p>
@@ -179,8 +179,9 @@
       card.addEventListener('click', () => {
         const link = card.dataset.link;
         navigator.clipboard.writeText(link).then(() => {
+          copiedMsg.innerText = "Link copiado: " + link;
           copiedMsg.style.display = 'block';
-          setTimeout(() => copiedMsg.style.display = 'none', 2000);
+          setTimeout(() => copiedMsg.style.display = 'none', 3000);
         }).catch(() => {
           prompt('Copie o link abaixo:', link);
         });
