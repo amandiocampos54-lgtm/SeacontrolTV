@@ -45,8 +45,8 @@ nav {
 
 nav a {
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  align-items: center; /* ícone e texto na mesma linha */
+  justify-content: center; /* conjunto centralizado dentro do botão */
   gap: 12px;
   background: rgba(255,255,255,0.2);
   color: white;
@@ -57,17 +57,20 @@ nav a {
   box-shadow: 0 6px 15px rgba(0,0,0,0.35);
   transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
   font-size: 1rem;
+  width: 100%; /* garante mesmo tamanho */
+  max-width: 250px;
 }
 
 nav a:hover {
   background: rgba(255,255,255,0.45);
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0,0,0,0.45);
 }
 
 nav a img {
   width: 28px;
   height: 28px;
+  border-radius: 50%; /* ícones redondos */
 }
 
 footer {
