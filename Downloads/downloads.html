@@ -6,59 +6,71 @@
 <title>Seacontrol TV - Downloads</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
+/* Animação de gradiente */
 @keyframes gradientAnimation {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
+/* Reset e layout base */
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* footer na base */
+  align-items: center;
   background: linear-gradient(-45deg, #00c6ff, #0072ff, #00e0ff, #005f99);
   background-size: 400% 400%;
   animation: gradientAnimation 20s ease infinite;
+  color: #fff;
+  overflow-x: hidden;
+  text-align: center;
+}
+
+/* Container central */
+.container {
+  flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center; /* centraliza verticalmente */
   align-items: center;
-  min-height: 100vh;
-  text-align: center;
-  color: #fff;
+  gap: 30px; /* espaço entre logo e nav */
+  width: 90%;
+  max-width: 600px;
 }
 
-header {
-  margin: 40px 0 20px 0;
-  z-index: 2;
-  position: relative;
-}
-
+/* Logo */
 header img {
   max-width: 250px;
+  width: 80%;
   height: auto;
 }
 
+/* Navegação / botões */
 nav {
   display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 50px;
-  z-index: 2;
-  position: relative;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
 }
 
 nav a {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
   background: rgba(255,255,255,0.15);
   color: white;
   text-decoration: none;
   font-weight: 600;
-  padding: 16px 28px;
+  padding: 16px 24px;
   border-radius: 35px;
   box-shadow: 0 6px 15px rgba(0,0,0,0.35);
   transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  font-size: 1rem;
 }
 
 nav a:hover {
@@ -72,16 +84,14 @@ nav a img {
   height: 28px;
 }
 
+/* Footer */
 footer {
-  margin-top: auto;
-  padding: 30px 0;
+  padding: 20px 0;
   font-size: 0.9rem;
   color: #e0e0e0;
-  position: relative;
-  z-index: 2;
 }
 
-/* Partículas suaves */
+/* Partículas */
 .particle {
   position: absolute;
   background: white;
@@ -96,21 +106,36 @@ footer {
   50% { transform: translateY(-50vh) translateX(10px) scale(0.8); opacity: 0.3; }
   100% { transform: translateY(-100vh) translateX(20px) scale(1); opacity: 0; }
 }
+
+/* Responsivo */
+@media (min-width: 600px) {
+  nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  nav a {
+    flex: 1 1 45%;
+    max-width: 250px;
+  }
+}
 </style>
 </head>
 <body>
 
-<header>
-  <img src="https://i.postimg.cc/SsWW8Kwt/Launcher-Logo.png" alt="Seacontrol TV Logo">
-</header>
+<div class="container">
+  <header>
+    <img src="https://i.postimg.cc/SsWW8Kwt/Launcher-Logo.png" alt="Seacontrol TV Logo">
+  </header>
 
-<nav>
-  <a href="Android/indexandroid.html"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg" alt="Android Logo"> Android</a>
-  <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Windows_logo_-_2012.svg" alt="Windows Logo"> Windows</a>
-  <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" alt="Samsung Logo"> Samsung Smart TV</a>
-  <a href="#"><img src="https://logos-world.net/wp-content/uploads/2020/05/LG-Symbol.png" alt="LG Logo"> LG Smart TV</a>
-  <a href="../index.html">🔙 Voltar</a>
-</nav>
+  <nav>
+    <a href="Android/indexandroid.html"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg" alt="Android Logo"> Android</a>
+    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Windows_logo_-_2012.svg" alt="Windows Logo"> Windows</a>
+    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" alt="Samsung Logo"> Samsung Smart TV</a>
+    <a href="#"><img src="https://logos-world.net/wp-content/uploads/2020/05/LG-Symbol.png" alt="LG Logo"> LG Smart TV</a>
+    <a href="../index.html">🔙 Voltar</a>
+  </nav>
+</div>
 
 <footer>
   © <span id="year"></span> Seacontrol TV · GitHub Pages
@@ -120,7 +145,7 @@ footer {
 // Atualiza o ano
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// Criar partículas (flocos de neve suaves)
+// Criar partículas suaves
 const numParticles = 50;
 for (let i = 0; i < numParticles; i++) {
   const particle = document.createElement('div');
