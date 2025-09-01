@@ -13,7 +13,6 @@ body {
   color: #f1f5f9;
 }
 
-/* Banner com efeito cores da bandeira de Portugal */
 header {
   position: relative;
   text-align: center;
@@ -29,8 +28,9 @@ header::before {
   opacity: 0.9;
 }
 
-header .icon {
-  font-size: 80px;
+header img {
+  width: 120px;
+  height: auto;
   margin-bottom: 10px;
 }
 
@@ -112,11 +112,24 @@ h2 {
   font-size: 0.85rem;
   color: #94a3b8;
 }
+
+.copied {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #22c55e;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  display: none;
+}
 </style>
 </head>
 <body>
 <header>
-  <div class="icon">📺</div>
+  <img src="https://i.postimg.cc/SsWW8Kwt/Launcher-Logo.png" alt="Seacontrol TV Logo">
   <nav>
     <a href="index.html">⬅ Voltar</a>
     <a href="indexdeutschland.html">Deutschland</a>
@@ -127,9 +140,24 @@ h2 {
   <section>
     <h2>MyTvOnline2</h2>
     <div class="grid">
-      <div class="card" data-link="https://amandiocampos54-lgtm.github.io/SeacontrolTV/MyTvOnline2/config.enc2">
+      <div class="card" data-link="https://amandiocampos54-lgtm.github.io/SeacontrolTV/MyTvOnline2/FerryTvMAX/config.enc2">
         <div class="icon-card">📂</div>
-        <h3>MyTvOnline2</h3>
+        <h3>Ferry + TvMAX</h3>
+        <p>Configuração MyTvOnline2</p>
+      </div>
+      <div class="card" data-link="https://amandiocampos54-lgtm.github.io/SeacontrolTV/MyTvOnline2/Ferryboat/config.enc2">
+        <div class="icon-card">📂</div>
+        <h3>Ferryboat</h3>
+        <p>Configuração MyTvOnline2</p>
+      </div>
+      <div class="card" data-link="https://amandiocampos54-lgtm.github.io/SeacontrolTV/MyTvOnline2/TREX/config.enc2">
+        <div class="icon-card">📂</div>
+        <h3>TREX</h3>
+        <p>Configuração MyTvOnline2</p>
+      </div>
+      <div class="card" data-link="https://amandiocampos54-lgtm.github.io/SeacontrolTV/MyTvOnline2/TvMAX/config.enc2">
+        <div class="icon-card">📂</div>
+        <h3>TvMAX</h3>
         <p>Configuração MyTvOnline2</p>
       </div>
     </div>
@@ -138,9 +166,24 @@ h2 {
   <section>
     <h2>MyTvOnline3</h2>
     <div class="grid">
-      <div class="card" data-link="https://amandiocampos54-lgtm.github.io/SeacontrolTV/MyTvOnline3/config.enc3">
+      <div class="card" data-link="https://amandiocampos54-lgtm.github.io/SeacontrolTV/MyTvOnline3/FerryTvMAX/config.enc3">
         <div class="icon-card">📂</div>
-        <h3>MyTvOnline3</h3>
+        <h3>Ferry + TvMAX</h3>
+        <p>Configuração MyTvOnline3</p>
+      </div>
+      <div class="card" data-link="https://amandiocampos54-lgtm.github.io/SeacontrolTV/MyTvOnline3/Ferryboat/config.enc3">
+        <div class="icon-card">📂</div>
+        <h3>Ferryboat</h3>
+        <p>Configuração MyTvOnline3</p>
+      </div>
+      <div class="card" data-link="https://amandiocampos54-lgtm.github.io/SeacontrolTV/MyTvOnline3/TREX/config.enc3">
+        <div class="icon-card">📂</div>
+        <h3>TREX</h3>
+        <p>Configuração MyTvOnline3</p>
+      </div>
+      <div class="card" data-link="https://amandiocampos54-lgtm.github.io/SeacontrolTV/MyTvOnline3/TvMAX/config.enc3">
+        <div class="icon-card">📂</div>
+        <h3>TvMAX</h3>
         <p>Configuração MyTvOnline3</p>
       </div>
     </div>
@@ -148,12 +191,10 @@ h2 {
 </main>
 
 <div class="footer">© <span id="year"></span> Seacontrol TV · GitHub Pages</div>
-
 <div class="copied" id="copied-msg">Link copiado!</div>
 
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
-
 const cards = document.querySelectorAll('.card');
 const copiedMsg = document.getElementById('copied-msg');
 
