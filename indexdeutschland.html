@@ -9,24 +9,16 @@
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #1e293b, #0f172a);
+  background: #0f172a;
   color: #f1f5f9;
 }
 
 header {
-  position: relative;
   text-align: center;
   padding: 40px 20px;
   color: white;
   background: linear-gradient(135deg, #000000, #DD0000, #FFD700);
-  background-size: 600% 600%;
-  animation: wave 8s ease-in-out infinite;
-}
-
-@keyframes wave {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  position: relative;
 }
 
 header img {
@@ -36,12 +28,13 @@ header img {
 }
 
 nav {
+  margin-top: 20px;
   display: flex;
   justify-content: center;
   gap: 15px;
   flex-wrap: wrap;
-  margin-top: 20px;
 }
+
 nav a {
   background: rgba(255,255,255,0.2);
   color: white;
@@ -49,8 +42,9 @@ nav a {
   font-weight: 600;
   padding: 10px 20px;
   border-radius: 30px;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: background 0.3s, transform 0.2s;
 }
+
 nav a:hover {
   background: rgba(255,255,255,0.35);
   transform: translateY(-2px);
@@ -82,7 +76,7 @@ h2 {
   text-align: center;
   box-shadow: 0 6px 18px rgba(0,0,0,0.4);
   cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease;
+  transition: transform 0.2s, background 0.2s;
 }
 
 .card:hover {
