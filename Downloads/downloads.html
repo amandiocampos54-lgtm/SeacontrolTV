@@ -27,13 +27,14 @@ body {
 }
 
 header {
-  margin: 40px 0;
+  margin: 40px 0 20px 0;
+  z-index: 2;
+  position: relative;
 }
 
 header img {
   max-width: 250px;
   height: auto;
-  margin-bottom: 20px;
 }
 
 nav {
@@ -42,6 +43,8 @@ nav {
   flex-wrap: wrap;
   justify-content: center;
   margin-bottom: 50px;
+  z-index: 2;
+  position: relative;
 }
 
 nav a {
@@ -74,6 +77,8 @@ footer {
   padding: 30px 0;
   font-size: 0.9rem;
   color: #e0e0e0;
+  position: relative;
+  z-index: 2;
 }
 
 /* Partículas suaves */
@@ -100,7 +105,6 @@ footer {
 </header>
 
 <nav>
-  <!-- Botão Android agora abre indexandroid.html -->
   <a href="Android/indexandroid.html"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg" alt="Android Logo"> Android</a>
   <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Windows_logo_-_2012.svg" alt="Windows Logo"> Windows</a>
   <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" alt="Samsung Logo"> Samsung Smart TV</a>
