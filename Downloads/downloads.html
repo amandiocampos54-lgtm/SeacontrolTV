@@ -38,7 +38,7 @@ header img {
 
 nav {
   display: flex;
-  gap: 15px;
+  gap: 20px;
   flex-wrap: wrap;
   justify-content: center;
   margin-bottom: 50px;
@@ -47,25 +47,26 @@ nav {
 nav a {
   display: flex;
   align-items: center;
-  gap: 10px;
-  background: rgba(255,255,255,0.2);
+  gap: 12px;
+  background: rgba(255,255,255,0.15);
   color: white;
   text-decoration: none;
   font-weight: 600;
-  padding: 15px 25px;
-  border-radius: 30px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  transition: background 0.3s ease, transform 0.2s ease;
+  padding: 16px 28px;
+  border-radius: 35px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.35);
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 nav a:hover {
-  background: rgba(255,255,255,0.35);
-  transform: translateY(-2px);
+  background: rgba(255,255,255,0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.45);
 }
 
 nav a img {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
 }
 
 footer {
@@ -80,14 +81,14 @@ footer {
   position: absolute;
   background: white;
   border-radius: 50%;
-  opacity: 0.6;
+  opacity: 0.5;
   pointer-events: none;
   animation: floatParticle linear infinite;
 }
 
 @keyframes floatParticle {
-  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0.6; }
-  50% { transform: translateY(-50vh) translateX(10px) scale(0.8); opacity: 0.4; }
+  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0.5; }
+  50% { transform: translateY(-50vh) translateX(10px) scale(0.8); opacity: 0.3; }
   100% { transform: translateY(-100vh) translateX(20px) scale(1); opacity: 0; }
 }
 </style>
@@ -102,7 +103,7 @@ footer {
   <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg" alt="Android Logo"> Android</a>
   <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Windows_logo_-_2012.svg" alt="Windows Logo"> Windows</a>
   <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg" alt="Samsung Logo"> Samsung Smart TV</a>
-  <a href="https://upload.wikimedia.org/wikipedia/commons/3/39/LG_logo.png"><img src="https://upload.wikimedia.org/wikipedia/commons/3/39/LG_logo.png" alt="LG Logo"> LG Smart TV</a>
+  <a href="#"><img src="https://logos-world.net/wp-content/uploads/2020/05/LG-Symbol.png" alt="LG Logo"> LG Smart TV</a>
   <a href="../index.html">🔙 Voltar</a>
 </nav>
 
@@ -119,7 +120,7 @@ const numParticles = 50;
 for (let i = 0; i < numParticles; i++) {
   const particle = document.createElement('div');
   particle.classList.add('particle');
-  const size = Math.random() * 4 + 2;
+  const size = Math.random() * 5 + 2;
   particle.style.width = size + 'px';
   particle.style.height = size + 'px';
   particle.style.left = Math.random() * 100 + 'vw';
