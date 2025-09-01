@@ -15,22 +15,47 @@
 
     header {
       background: linear-gradient(90deg, #2563eb, #9333ea);
-      padding: 40px 20px;
-      text-align: center;
+      padding: 20px;
       color: white;
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
 
+    /* Barra de navegação */
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      background: rgba(255,255,255,0.15);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 30px;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    nav a:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-2px);
+    }
+
     header h1 {
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       margin: 0;
       font-weight: 700;
+      text-align: center;
     }
 
     header p {
       margin: 10px 0 0;
       font-size: 1rem;
       opacity: 0.9;
+      text-align: center;
     }
 
     main {
@@ -107,6 +132,12 @@
 </head>
 <body>
   <header>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="indexdeutschland.html">Deutschland</a>
+      <!-- Aqui podes adicionar mais botões futuramente -->
+      <!-- <a href="outro.html">Outro</a> -->
+    </nav>
     <h1>Seacontrol TV</h1>
     <p>Clica num cartão para copiar o link do ficheiro de configuração</p>
   </header>
