@@ -24,10 +24,9 @@ body {
   color: #fff;
   overflow: hidden;
 
-  /* Fundo animado azul turquesa / azul oceano */
   background: linear-gradient(-45deg, #00c6ff, #0072ff, #00e0ff, #005f99);
   background-size: 400% 400%;
-  animation: gradientAnimation 15s ease infinite;
+  animation: gradientAnimation 20s ease infinite;
   position: relative;
 }
 
@@ -77,19 +76,20 @@ footer {
   z-index: 2;
 }
 
-/* Partículas (bolinhas brancas) */
+/* Partículas suaves */
 .particle {
   position: absolute;
   background: white;
   border-radius: 50%;
-  opacity: 0.7;
+  opacity: 0.6;
   pointer-events: none;
   animation: floatParticle linear infinite;
 }
 
 @keyframes floatParticle {
-  0% { transform: translateY(0) translateX(0); opacity: 0.7; }
-  100% { transform: translateY(-120vh) translateX(20px); opacity: 0.1; }
+  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0.6; }
+  50% { transform: translateY(-50vh) translateX(10px) scale(0.8); opacity: 0.4; }
+  100% { transform: translateY(-100vh) translateX(20px) scale(1); opacity: 0; }
 }
 </style>
 </head>
@@ -99,6 +99,7 @@ footer {
   <nav>
     <a href="indexportugal.html">Portugal</a>
     <a href="indexdeutschland.html">Deutschland</a>
+    <a href="downloads/">Downloads</a>
   </nav>
 </header>
 
@@ -109,17 +110,17 @@ footer {
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// Criar partículas (bolinhas brancas)
-const numParticles = 20;
+// Criar partículas mais suaves e densas
+const numParticles = 50; // maior número para densidade
 for (let i = 0; i < numParticles; i++) {
   const particle = document.createElement('div');
   particle.classList.add('particle');
-  const size = Math.random() * 5 + 3;
+  const size = Math.random() * 4 + 2; // tamanho entre 2px e 6px
   particle.style.width = size + 'px';
   particle.style.height = size + 'px';
   particle.style.left = Math.random() * 100 + 'vw';
   particle.style.top = Math.random() * 100 + 'vh';
-  particle.style.animationDuration = 10 + Math.random() * 20 + 's';
+  particle.style.animationDuration = 15 + Math.random() * 20 + 's';
   particle.style.animationDelay = Math.random() * 10 + 's';
   document.body.appendChild(particle);
 }
