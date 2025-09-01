@@ -17,8 +17,8 @@ body {
   font-family: 'Poppins', sans-serif;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* centraliza verticalmente */
-  align-items: center;    /* centraliza horizontalmente */
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
   text-align: center;
   color: #fff;
@@ -61,6 +61,8 @@ nav a {
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
   font-size: 1rem;
+  width: 100%; /* Garante mesmo tamanho */
+  max-width: 250px;
 }
 
 nav a:hover {
@@ -70,8 +72,9 @@ nav a:hover {
 }
 
 nav a img {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%; /* Bandeiras redondas */
 }
 
 footer {
@@ -104,8 +107,8 @@ footer {
 </header>
 
 <nav>
-  <a href="indexportugal.html"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg" alt="Portugal"> Portugal</a>
-  <a href="indexdeutschland.html"><img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" alt="Deutschland"> Deutschland</a>
+  <a href="indexportugal.html"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_Portugal.svg/64px-Flag_of_Portugal.svg.png" alt="Portugal"> Portugal</a>
+  <a href="indexdeutschland.html"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/64px-Flag_of_Germany.svg.png" alt="Deutschland"> Deutschland</a>
   <a href="Downloads/downloads.html">📥 Downloads</a>
 </nav>
 
