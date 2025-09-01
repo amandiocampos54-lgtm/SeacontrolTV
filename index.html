@@ -17,81 +17,73 @@ body {
   font-family: 'Poppins', sans-serif;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  justify-content: center; /* centraliza verticalmente */
   align-items: center;
-  justify-content: center;
+  min-height: 100vh;
   text-align: center;
   color: #fff;
   overflow: hidden;
   background: linear-gradient(-45deg, #00c6ff, #0072ff, #00e0ff, #005f99);
   background-size: 400% 400%;
   animation: gradientAnimation 20s ease infinite;
-  position: relative;
 }
 
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 25px;
+  gap: 20px;
   width: 90%;
-  max-width: 500px;
+  max-width: 400px;
 }
 
 header img {
-  max-width: 250px;
+  max-width: 200px;
   width: 80%;
   height: auto;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 nav {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   width: 100%;
 }
 
 nav a {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   gap: 12px;
-  background: rgba(255,255,255,0.15);
+  justify-content: flex-start;
+  background: rgba(255,255,255,0.2);
   color: white;
   text-decoration: none;
   font-weight: 600;
-  padding: 14px 24px;
+  padding: 12px 20px; /* menor padding */
   border-radius: 30px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
   font-size: 1rem;
 }
 
 nav a:hover {
-  background: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.35);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.45);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.35);
 }
 
 nav a img {
   width: 28px;
   height: 28px;
-  border-radius: 50%;
 }
 
 footer {
-  margin-top: auto;
-  padding: 20px 0;
+  margin-top: 40px;
   font-size: 0.9rem;
   color: #e0e0e0;
-  text-align: center;
-  width: 100%;
-  position: relative;
-  z-index: 2;
 }
 
-/* Partículas suaves */
 .particle {
   position: absolute;
   background: white;
@@ -109,8 +101,8 @@ footer {
 
 /* Responsivo */
 @media (min-width: 600px) {
-  nav {
-    flex-direction: column;
+  nav a {
+    padding: 14px 22px;
   }
 }
 </style>
@@ -123,12 +115,8 @@ footer {
   </header>
 
   <nav>
-    <a href="indexportugal.html">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg" alt="Portugal Flag"> Portugal
-    </a>
-    <a href="indexdeutschland.html">
-      <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" alt="Germany Flag"> Deutschland
-    </a>
+    <a href="indexportugal.html"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg" alt="Portugal Flag"> Portugal</a>
+    <a href="indexdeutschland.html"><img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" alt="Germany Flag"> Deutschland</a>
     <a href="Downloads/downloads.html">📥 Downloads</a>
   </nav>
 </div>
@@ -140,12 +128,12 @@ footer {
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// Criar partículas suaves
+// Criar partículas (flocos de neve suaves)
 const numParticles = 50;
 for (let i = 0; i < numParticles; i++) {
   const particle = document.createElement('div');
   particle.classList.add('particle');
-  const size = Math.random() * 5 + 2;
+  const size = Math.random() * 4 + 2;
   particle.style.width = size + 'px';
   particle.style.height = size + 'px';
   particle.style.left = Math.random() * 100 + 'vw';
