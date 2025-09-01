@@ -6,6 +6,7 @@
 <title>Seacontrol TV</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
+/* Animação do fundo */
 @keyframes gradientAnimation {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -16,7 +17,6 @@ body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
@@ -29,66 +29,62 @@ body {
 }
 
 .container {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* centraliza verticalmente */
   align-items: center;
-  gap: 30px;
+  gap: 25px;
   width: 90%;
-  max-width: 600px;
+  max-width: 400px; /* Limita largura dos botões */
 }
 
 header img {
-  max-width: 300px;
+  max-width: 200px;
   width: 80%;
   height: auto;
+  margin-bottom: 30px;
 }
 
 nav {
   display: flex;
-  flex-direction: column; /* sempre vertical */
-  gap: 16px;
+  flex-direction: column;
+  gap: 15px;
   width: 100%;
 }
 
 nav a {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 12px;
+  justify-content: flex-start; /* Alinha ícone e texto à esquerda */
   background: rgba(255,255,255,0.15);
   color: white;
-  text-decoration: none;
   font-weight: 600;
-  padding: 16px 24px;
-  border-radius: 35px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.35);
-  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-  font-size: 1rem;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  font-size: 0.95rem;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 nav a:hover {
-  background: rgba(255,255,255,0.4);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.45);
+  background: rgba(255,255,255,0.35);
+  transform: translateY(-2px);
 }
 
 nav a img {
   width: 28px;
   height: 28px;
-  border-radius: 50%;
+  flex-shrink: 0;
 }
 
 footer {
-  margin-top: auto;
-  padding: 20px 0;
-  font-size: 0.9rem;
+  margin-top: 40px;
+  font-size: 0.85rem;
   color: #e0e0e0;
-  position: relative;
-  z-index: 2;
 }
 
+/* Partículas */
 .particle {
   position: absolute;
   background: white;
@@ -103,6 +99,19 @@ footer {
   50% { transform: translateY(-50vh) translateX(10px) scale(0.8); opacity: 0.4; }
   100% { transform: translateY(-100vh) translateX(20px) scale(1); opacity: 0; }
 }
+
+/* Responsivo para telemóveis */
+@media (max-width: 480px) {
+  nav a {
+    font-size: 0.9rem;
+    padding: 10px 18px;
+  }
+
+  nav a img {
+    width: 24px;
+    height: 24px;
+  }
+}
 </style>
 </head>
 <body>
@@ -114,12 +123,16 @@ footer {
 
   <nav>
     <a href="indexportugal.html">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg" alt="Portugal Flag"> Portugal
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg" alt="Portugal Flag">
+      Portugal
     </a>
     <a href="indexdeutschland.html">
-      <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" alt="Germany Flag"> Deutschland
+      <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" alt="Germany Flag">
+      Deutschland
     </a>
-    <a href="Downloads/downloads.html">📥 Downloads</a>
+    <a href="Downloads/downloads.html">
+      📥 Downloads
+    </a>
   </nav>
 </div>
 
@@ -128,10 +141,11 @@ footer {
 </footer>
 
 <script>
+// Atualiza o ano
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// Partículas
-const numParticles = 50;
+// Criação de partículas
+const numParticles = 40;
 for (let i = 0; i < numParticles; i++) {
   const particle = document.createElement('div');
   particle.classList.add('particle');
