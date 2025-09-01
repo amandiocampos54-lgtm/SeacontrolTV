@@ -32,11 +32,11 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; /* centraliza verticalmente */
   align-items: center;
   gap: 30px;
   width: 90%;
-  max-width: 400px;
+  max-width: 600px;
 }
 
 header img {
@@ -53,9 +53,9 @@ nav {
 }
 
 nav a {
-  display: grid;
-  grid-template-columns: 40px 1fr; /* coluna 1: ícone, coluna 2: texto */
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
   background: rgba(255,255,255,0.15);
   color: white;
@@ -114,17 +114,12 @@ footer {
 
   <nav>
     <a href="indexportugal.html">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg" alt="Portugal Flag">
-      <span>Portugal</span>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg" alt="Portugal Flag"> Portugal
     </a>
     <a href="indexdeutschland.html">
-      <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" alt="Germany Flag">
-      <span>Deutschland</span>
+      <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" alt="Germany Flag"> Deutschland
     </a>
-    <a href="Downloads/downloads.html">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Download_font_awesome.svg" alt="Downloads">
-      <span>Downloads</span>
-    </a>
+    <a href="Downloads/downloads.html">📥 Downloads</a>
   </nav>
 </div>
 
