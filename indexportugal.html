@@ -13,19 +13,21 @@ body {
   color: #f1f5f9;
 }
 
+/* Banner com efeito ondulante */
 header {
   position: relative;
   text-align: center;
   padding: 40px 20px;
   color: white;
+  background: linear-gradient(135deg, #006400, #FF0000, #FFD700);
+  background-size: 600% 600%;
+  animation: wave 8s ease-in-out infinite;
 }
-header::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, #006600, #FF0000, #FFD700);
-  z-index: -1;
-  opacity: 0.9;
+
+@keyframes wave {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 header img {
