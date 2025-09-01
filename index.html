@@ -50,6 +50,7 @@
       justify-content: center;
       position: relative;
       z-index: 2;
+      margin-top: 20px;
     }
 
     nav a {
@@ -76,7 +77,7 @@
       z-index: 2;
     }
 
-    /* Partículas */
+    /* Partículas (bolinhas brancas) */
     .particle {
       position: absolute;
       background: white;
@@ -95,12 +96,11 @@
 <body>
   <header>
     <img src="https://i.postimg.cc/SsWW8Kwt/Launcher-Logo.png" alt="Seacontrol TV Logo">
+    <nav>
+      <a href="indexportugal.html">Portugal</a>
+      <a href="/indexdeutschland.html">Deutschland</a>
+    </nav>
   </header>
-
-  <nav>
-    <a href="indexportugal.html">Portugal</a>
-    <a href="indexdeutschland.html">Deutschland</a>
-  </nav>
 
   <footer>
     © <span id="year"></span> Seacontrol TV · GitHub Pages
@@ -110,7 +110,7 @@
     document.getElementById("year").textContent = new Date().getFullYear();
 
     // Criar partículas (bolinhas brancas)
-    const numParticles = 20; // número pequeno para não sobrecarregar
+    const numParticles = 20; // número pequeno
     for (let i = 0; i < numParticles; i++) {
       const particle = document.createElement('div');
       particle.classList.add('particle');
