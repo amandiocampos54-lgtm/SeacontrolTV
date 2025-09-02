@@ -61,7 +61,7 @@ nav a {
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
   font-size: 1rem;
-  width: 100%; /* Garante mesmo tamanho */
+  width: 100%;
   max-width: 250px;
 }
 
@@ -74,7 +74,7 @@ nav a:hover {
 nav a img {
   width: 32px;
   height: 32px;
-  border-radius: 50%; /* Bandeiras redondas */
+  border-radius: 50%;
 }
 
 footer {
@@ -111,6 +111,7 @@ footer {
   <a href="indexdeutschland.html"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/64px-Flag_of_Germany.svg.png" alt="Deutschland"> Deutschland</a>
   <a href="indexfrance.html"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/64px-Flag_of_France.svg.png" alt="France"> France</a>
   <a href="Downloads/downloads.html">📥 Downloads</a>
+  <a href="links.html">🔗 Links Úteis</a> <!-- Novo botão -->
 </nav>
 
 <footer>
@@ -120,7 +121,7 @@ footer {
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// Criar partículas (flocos de neve suaves)
+// Criar partículas
 const numParticles = 50;
 for (let i = 0; i < numParticles; i++) {
   const particle = document.createElement('div');
