@@ -1,1 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seacontrol TV - España</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #0f172a;
+  color: #f1f5f9;
+}
+
+header {
+  text-align: center;
+  padding: 40px 20px;
+  color: white;
+  background: linear-gradient(135deg, #000000, #DD0000, #FFD700);
+  position: relative;
+}
+
+header img {
+  width: 120px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+nav {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 30px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+nav a:hover {
+  background: rgba(255,255,255,0.35);
+  transform: translateY(-2px);
+}
+
+main {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  border-left: 5px solid #3b82f6;
+  padding-left: 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #1e293b;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  background: #334155;
+}
+
+.icon-card {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  margin: 10px 0 5px;
+  font-size: 1.2rem;
+  color: #facc15;
+}
+
+.card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.copied {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #22c55e;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  display: none;
+}
+</style>
+</head>
+<body>
+<header>
+  <img src="https://i.postimg.cc/SsWW8Kwt/Launcher-Logo.png" alt="Seacontrol TV Logo">
+  <nav>
+    <a href="index.html">⬅ Voltar</a>
+    <a href="indexportugal.html">Portugal</a>
+    <a href="indexdeutschland.html">Deutschland</a>
+    <a href="indexfrance.html">France</a>
+  </nav>
+</header>
+
+<main>
+  <section>
+    <h2>MyTvOnline2 - España</h2>
+    <div class="grid">
+      <div class="card" data-link="https://amandiocampos54-lgtm.github.io/SeacontrolTV/Espanha/MyTvOnline2/Dynamo/config.enc2">
+        <div class="icon-card">📂</div>
+        <h3>Dynamo-RZHH88</h3>
+        <p>Configuração MyTvOnline2</p>
+      </div>
+      <div class="card" data-link="https://amandiocampos54-lgtm.github.io/SeacontrolTV/Espanha/MyTvOnline2/DreamTV/config.enc2">
+        <div class="icon-card">📂</div>
+        <h3>DreamTV-RZDREAM</h3>
+        <p>Configuração MyTvOnline2</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>MyTvOnline3 - España</h2>
+    <div class="grid">
+      <div class="card" data-link="https://amandiocampos54-lgtm.github.io/SeacontrolTV/Espanha/MyTvOnline3/Dynamo/config.enc3">
+        <div class="icon-card">📂</div>
+        <h3>Dynamo-RZ2HH88</h3>
+        <p>Configuração MyTvOnline3</p>
+      </div>
+      <div class="card" data-link="https://amandiocampos54-lgtm.github.io/SeacontrolTV/Espanha/MyTvOnline3/DreamTV/config.enc3">
+        <div class="icon-card">📂</div>
+        <h3>DreamTV-RZ2DREAM</h3>
+        <p>Configuração MyTvOnline3</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="footer">© <span id="year"></span> Seacontrol TV · GitHub Pages</div>
+<div class="copied" id="copied-msg">Link copiado!</div>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+const cards = document.querySelectorAll('.card');
+const copiedMsg = document.getElementById('copied-msg');
+
+cards.forEach(card => {
+  card.addEventListener('click', () => {
+    const link = card.dataset.link;
+    navigator.clipboard.writeText(link).then(() => {
+      copiedMsg.innerText = "Link copiado: " + link;
+      copiedMsg.style.display = 'block';
+      setTimeout(() => copiedMsg.style.display = 'none', 3000);
+    }).catch(() => {
+      prompt('Copie o link abaixo:', link);
+    });
+  });
+});
+</script>
+</body>
+</html>
 
