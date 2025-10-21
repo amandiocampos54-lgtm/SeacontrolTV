@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<update>
+  <!-- =====================================================
+       Ficheiro de atualização remoto para MAG250–MAG322
+       Autor: SeacontrolTV
+       Função: Atualizar o portal automaticamente nas boxes
+       ===================================================== -->
+
+  <!-- Número da versão (muda sempre que quiser forçar atualização) -->
+  <version>1.0.1</version>
+
+  <!-- Texto mostrado na tela da box durante a atualização -->
+  <description>Atualização remota do portal SeacontrolTV. Aguarde...</description>
+
+  <!-- Novo endereço do portal (muda aqui quando quiser apontar para outro servidor) -->
+  <url>http://my.seacontrol.xyz:80/c/</url>
+
+  <!-- (Opcional) Link de firmware, se quiser forçar atualização de sistema -->
+  <!-- <firmware_url>http://update.seacontroltv.com/firmware/MAG322_2.20.08.zip</firmware_url> -->
+
+  <!-- (Opcional) Hash de verificação -->
+  <!-- <checksum>abc123def456</checksum> -->
+</update>
