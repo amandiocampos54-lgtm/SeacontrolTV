@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Links Úteis - Seacontrol TV</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
 @keyframes gradientAnimation {
   0% { background-position: 0% 50%; }
@@ -63,6 +65,7 @@ nav a {
   font-size: 1rem;
   width: 100%;
   max-width: 280px;
+  cursor: pointer;
 }
 
 nav a:hover {
@@ -94,6 +97,7 @@ footer {
 }
 </style>
 </head>
+
 <body>
 
 <header>
@@ -102,11 +106,11 @@ footer {
 </header>
 
 <nav>
-  <a href="https://www.smart-stb.net/" target="_blank">🌐 Smart-STB</a>
-  <a href="https://k11.ddns.net/" target="_blank">🔑 K11 Painel</a>
-  <a href="https://siptv.app/mylist/" target="_blank">📺 SIPTV Playlist</a>
-  <a href="https://iboplayer.com/" target="_blank">📱 IBO Player</a>
-  <a href="https://config.aloys.co.kr/" target="_blank">🖥️ Deployment Tools</a>
+  <a href="#" onclick="openSafe('https://www.smart-stb.net/')">🌐 Smart-STB</a>
+  <a href="#" onclick="openSafe('https://k11.ddns.net/')">🔑 K11 Painel</a>
+  <a href="#" onclick="openSafe('https://siptv.app/mylist/')">📺 SIPTV Playlist</a>
+  <a href="#" onclick="openSafe('https://iboplayer.com/')">📱 IBO Player</a>
+  <a href="#" onclick="openSafe('https://config.aloys.co.kr/')">🖥️ Deployment Tools</a>
   <a href="index.html">⬅ Voltar</a>
 </nav>
 
@@ -115,24 +119,40 @@ footer {
 </footer>
 
 <script>
+// Atualizar ano automaticamente
 document.getElementById("year").textContent = new Date().getFullYear();
+
+// Função para abrir links de forma segura (resolve problema do GitHub)
+function openSafe(url) {
+  const newWindow = window.open('', '_blank');
+  if (newWindow) {
+    newWindow.opener = null;
+    newWindow.location = url;
+  } else {
+    // fallback (caso popup bloqueado)
+    window.location.href = url;
+  }
+}
 
 // Criar partículas
 const numParticles = 40;
 for (let i = 0; i < numParticles; i++) {
   const particle = document.createElement('div');
   particle.classList.add('particle');
+
   const size = Math.random() * 5 + 2;
   particle.style.width = size + 'px';
   particle.style.height = size + 'px';
+
   particle.style.left = Math.random() * 100 + 'vw';
   particle.style.top = Math.random() * 100 + 'vh';
-  particle.style.animationDuration = 15 + Math.random() * 20 + 's';
+
+  particle.style.animationDuration = (15 + Math.random() * 20) + 's';
   particle.style.animationDelay = Math.random() * 10 + 's';
+
   document.body.appendChild(particle);
 }
 </script>
 
 </body>
 </html>
-
