@@ -15,36 +15,53 @@ body {
   color: #f1f5f9;
 }
 
-header {
-  text-align: center;
-  padding: 40px 20px;
-  color: white;
-  background: linear-gradient(135deg, #007A33, #FF0000, #FFD700);
+/* 🌍 TOPBAR LÍNGUAS */
+.topbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 15px;
+  background: #020617;
+  flex-wrap: wrap;
 }
 
-header img {
-  width: 120px;
-  margin-bottom: 10px;
-}
-
-/* ✅ BOTÃO VOLTAR CORRIGIDO */
-.nav-btn {
-  display: inline-block;
-  margin-top: 15px;
-  background: rgba(255,255,255,0.2);
-  color: white;
+.lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.12);
+  padding: 8px 14px;
+  border-radius: 25px;
   text-decoration: none;
-  padding: 10px 22px;
-  border-radius: 30px;
+  color: white;
   font-weight: 600;
   transition: 0.3s;
 }
 
-.nav-btn:hover {
+.lang-btn:hover {
   background: rgba(255,255,255,0.35);
   transform: translateY(-2px);
 }
 
+.lang-btn.active {
+  background: #facc15;
+  color: black;
+}
+
+.lang-btn img {
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.back-btn {
+  margin-left: 20px;
+  background: rgba(255,255,255,0.2);
+}
+
+/* MAIN */
 main {
   max-width: 900px;
   margin: 40px auto;
@@ -56,6 +73,7 @@ h1 {
   margin-bottom: 30px;
 }
 
+/* CARD */
 .card {
   background: #1e293b;
   border-radius: 14px;
@@ -70,21 +88,19 @@ h1 {
   margin-bottom: 20px;
 }
 
+/* 🔥 ICON 130px */
 .icon-img {
   width: 130px;
   height: 130px;
   object-fit: contain;
+  filter: drop-shadow(0 5px 10px rgba(0,0,0,0.4));
 }
 
-/* 🎥 VIDEO */
-.video-container {
-  margin: 20px 0;
-}
-
+/* VIDEO */
 video {
   width: 100%;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  margin: 20px 0;
 }
 
 h2 {
@@ -113,17 +129,34 @@ h2 {
 
 <body>
 
-<header>
-  <img src="https://i.postimg.cc/SsWW8Kwt/Launcher-Logo.png" alt="Logo">
-  <br>
-  <a href="index.html" class="nav-btn">⬅ Voltar</a>
-</header>
+<!-- 🌍 LÍNGUAS -->
+<div class="topbar">
+
+  <a href="instructions_pt.html" class="lang-btn active">
+    <img src="/SeacontrolTV/Images/portugal.png"> PT
+  </a>
+
+  <a href="instructions_es.html" class="lang-btn">
+    <img src="/SeacontrolTV/Images/spain.png"> ES
+  </a>
+
+  <a href="instructions_fr.html" class="lang-btn">
+    <img src="/SeacontrolTV/Images/france.png"> FR
+  </a>
+
+  <a href="instructions_de.html" class="lang-btn">
+    <img src="/SeacontrolTV/Images/germany.png"> DE
+  </a>
+
+  <a href="index.html" class="lang-btn back-btn">⬅ Voltar</a>
+
+</div>
 
 <main>
 
 <h1>📺 Instruções de Instalação</h1>
 
-<!-- MyTvOnline 2 -->
+<!-- MYTVONLINE 2 -->
 <div class="card">
 
   <div class="icon-card">
@@ -132,25 +165,21 @@ h2 {
 
   <h2>MyTvOnline 2</h2>
 
-  <!-- 🎥 VIDEO -->
-  <div class="video-container">
-    <video controls>
-      <source src="/SeacontrolTV/Videos/mytvonline2.webm" type="video/webm">
-      O seu navegador não suporta vídeo.
-    </video>
-  </div>
+  <video controls>
+    <source src="/SeacontrolTV/Videos/mytvonline2.webm" type="video/webm">
+  </video>
 
-  <div class="step">1️⃣ Aceda a <strong>Informações do Sistema</strong>.</div>
-  <div class="step">2️⃣ Vá até <strong>Data de Implementação</strong>.</div>
-  <div class="step important">⚠️ NÃO pressione OK!</div>
-  <div class="step">3️⃣ Pressione: 🔴 → 🟢 → 🟡 → 🔵</div>
-  <div class="step">4️⃣ Insira o <strong>InputCode</strong>.</div>
-  <div class="step">5️⃣ Clique em <strong>Aplicar</strong>.</div>
-  <div class="step">6️⃣ O sistema reinicia automaticamente.</div>
+  <div class="step">1️⃣ Aceda a <strong>Informações do Sistema</strong></div>
+  <div class="step">2️⃣ Vá até <strong>Data de Implementação</strong></div>
+  <div class="step important">⚠️ NÃO pressione OK</div>
+  <div class="step">3️⃣ Pressione 🔴 🟢 🟡 🔵</div>
+  <div class="step">4️⃣ Insira o InputCode</div>
+  <div class="step">5️⃣ Aplicar</div>
+  <div class="step">6️⃣ Reinício automático</div>
 
 </div>
 
-<!-- MyTvOnline 3 -->
+<!-- MYTVONLINE 3 -->
 <div class="card">
 
   <div class="icon-card">
@@ -159,22 +188,18 @@ h2 {
 
   <h2>MyTvOnline 3</h2>
 
-  <!-- 🎥 VIDEO -->
-  <div class="video-container">
-    <video controls>
-      <source src="/SeacontrolTV/Videos/mytvonline3.webm" type="video/webm">
-      O seu navegador não suporta vídeo.
-    </video>
-  </div>
+  <video controls>
+    <source src="/SeacontrolTV/Videos/mytvonline3.webm" type="video/webm">
+  </video>
 
-  <div class="step">1️⃣ Abra <strong>Definições</strong> ⚙️</div>
-  <div class="step">2️⃣ Vá a <strong>Informações do Sistema</strong></div>
-  <div class="step">3️⃣ Vá até <strong>Data de Implementação</strong></div>
-  <div class="step important">⚠️ NÃO pressione OK!</div>
-  <div class="step">4️⃣ Pressione: 🔴 → 🟢 → 🟡 → 🔵</div>
-  <div class="step">5️⃣ Insira o <strong>InputCode</strong></div>
-  <div class="step">6️⃣ Clique em <strong>Aplicar</strong></div>
-  <div class="step">7️⃣ O sistema reinicia automaticamente</div>
+  <div class="step">1️⃣ Definições ⚙️</div>
+  <div class="step">2️⃣ Informações do Sistema</div>
+  <div class="step">3️⃣ Data de Implementação</div>
+  <div class="step important">⚠️ NÃO pressione OK</div>
+  <div class="step">4️⃣ Pressione 🔴 🟢 🟡 🔵</div>
+  <div class="step">5️⃣ Inserir código</div>
+  <div class="step">6️⃣ Aplicar</div>
+  <div class="step">7️⃣ Reinício automático</div>
 
 </div>
 
