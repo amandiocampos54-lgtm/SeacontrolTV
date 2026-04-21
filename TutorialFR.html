@@ -1,1 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seacontrol TV - Instructions FR</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #0f172a;
+  color: #f1f5f9;
+}
+
+/* 🌍 TOPBAR */
+.topbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 15px;
+  background: #020617;
+  flex-wrap: wrap;
+}
+
+.lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.12);
+  padding: 8px 14px;
+  border-radius: 25px;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.lang-btn:hover {
+  background: rgba(255,255,255,0.35);
+  transform: translateY(-2px);
+}
+
+.lang-btn.active {
+  background: #facc15;
+  color: black;
+}
+
+.lang-btn img {
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.back-btn {
+  margin-left: 20px;
+  background: rgba(255,255,255,0.2);
+}
+
+/* MAIN */
+main {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* CARD */
+.card {
+  background: #1e293b;
+  border-radius: 14px;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+}
+
+.icon-card {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.icon-img {
+  width: 130px;
+  height: 130px;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 10px rgba(0,0,0,0.4));
+}
+
+video {
+  width: 100%;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+h2 {
+  color: #facc15;
+  margin-bottom: 15px;
+}
+
+.step {
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.important {
+  color: #f87171;
+  font-weight: 600;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🌍 LÍNGUAS -->
+<div class="topbar">
+
+  <a href="TutorialPT.html" class="lang-btn">
+    <img src="/SeacontrolTV/Images/portugal.png"> PT
+  </a>
+
+  <a href="TutorialES.html" class="lang-btn">
+    <img src="/SeacontrolTV/Images/spain.png"> ES
+  </a>
+
+  <a href="TutorialFR.html" class="lang-btn active">
+    <img src="/SeacontrolTV/Images/france.png"> FR
+  </a>
+
+  <a href="TutorialDE.html" class="lang-btn">
+    <img src="/SeacontrolTV/Images/germany.png"> DE
+  </a>
+
+  <a href="index.html" class="lang-btn back-btn">⬅ Retour</a>
+
+</div>
+
+<main>
+
+<h1>📺 Instructions d'installation</h1>
+
+<!-- MYTVONLINE 2 -->
+<div class="card">
+
+  <div class="icon-card">
+    <img src="/SeacontrolTV/Images/input.png" class="icon-img">
+  </div>
+
+  <h2>MyTvOnline 2</h2>
+
+  <video controls>
+    <source src="/SeacontrolTV/Videos/mytvonline2.webm" type="video/webm">
+  </video>
+
+  <div class="step">1️⃣ Accédez à <strong>Informations système</strong></div>
+  <div class="step">2️⃣ Allez à <strong>Date d'installation</strong></div>
+  <div class="step important">⚠️ NE PAS appuyer sur OK</div>
+  <div class="step">3️⃣ Appuyez 🔴 🟢 🟡 🔵</div>
+  <div class="step">4️⃣ Entrez le InputCode</div>
+  <div class="step">5️⃣ Appliquer</div>
+  <div class="step">6️⃣ Redémarrage automatique</div>
+
+</div>
+
+<!-- MYTVONLINE 3 -->
+<div class="card">
+
+  <div class="icon-card">
+    <img src="/SeacontrolTV/Images/input.png" class="icon-img">
+  </div>
+
+  <h2>MyTvOnline 3</h2>
+
+  <video controls>
+    <source src="/SeacontrolTV/Videos/mytvonline3.webm" type="video/webm">
+  </video>
+
+  <div class="step">1️⃣ Ouvrez Paramètres ⚙️</div>
+  <div class="step">2️⃣ Informations système</div>
+  <div class="step">3️⃣ Date d'installation</div>
+  <div class="step important">⚠️ NE PAS appuyer sur OK</div>
+  <div class="step">4️⃣ Appuyez 🔴 🟢 🟡 🔵</div>
+  <div class="step">5️⃣ Entrez le code</div>
+  <div class="step">6️⃣ Appliquer</div>
+  <div class="step">7️⃣ Redémarrage automatique</div>
+
+</div>
+
+</main>
+
+<div class="footer">© <span id="year"></span> Seacontrol TV</div>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
