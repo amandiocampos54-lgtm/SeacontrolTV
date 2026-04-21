@@ -72,41 +72,45 @@ h2 {
 
 .card {
   background: #1e293b;
-  border-radius: 16px;
-  padding: 20px;
+  border-radius: 14px;
+  padding: 16px;
   text-align: center;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.35);
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.2s ease;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  background: #334155;
+  transform: translateY(-4px);
+  background: #273449;
 }
 
 .icon-card {
   display: flex;
   justify-content: center;
-  margin-bottom: 10px;
+  align-items: center;
+  margin-bottom: 12px;
 }
 
+/* ✅ ÍCONE 100px */
 .icon-img {
-  width: 40px;
-  height: 40px;
+  width: 100px;
+  height: 100px;
   object-fit: contain;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.35));
 }
 
 .card h3 {
-  margin: 10px 0 5px;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
+  margin: 8px 0;
   color: #facc15;
+  font-weight: 600;
 }
 
 .card p {
-  margin: 0;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: #cbd5e1;
+  margin: 0;
 }
 
 .footer {
@@ -145,43 +149,41 @@ h2 {
 
 <main>
 
-  <section>
-    <h2>MyTvOnline2</h2>
+<section>
+  <h2>MyTvOnline2</h2>
 
-    <div class="grid">
-      <div class="card" data-link="https://amandiocampos54-lgtm.github.io/SeacontrolTV/France/MyTvOnline2/TREX/config.enc2">
+  <div class="grid">
 
-        <div class="icon-card">
-          <img src="/SeacontrolTV/Images/input.png" alt="Input Code Logo" class="icon-img">
-        </div>
-
-        <h3>TREX-TT7388</h3>
-        <p>Configuration MyTvOnline2</p>
-
+    <div class="card" data-link="https://amandiocampos54-lgtm.github.io/SeacontrolTV/France/MyTvOnline2/TREX/config.enc2">
+      <div class="icon-card">
+        <img src="/SeacontrolTV/Images/input.png" alt="Input Code" class="icon-img">
       </div>
+      <h3>TREX-TT7388</h3>
+      <p>Configuration MyTvOnline2</p>
     </div>
-  </section>
 
-  <section>
-    <h2>MyTvOnline3</h2>
+  </div>
+</section>
 
-    <div class="grid">
-      <div class="card" data-link="https://amandiocampos54-lgtm.github.io/SeacontrolTV/France/MyTvOnline3/TREX/config.enc3">
+<section>
+  <h2>MyTvOnline3</h2>
 
-        <div class="icon-card">
-          <img src="/SeacontrolTV/Images/input.png" alt="Input Code Logo" class="icon-img">
-        </div>
+  <div class="grid">
 
-        <h3>TREX-TRX7388</h3>
-        <p>Configuration MyTvOnline3</p>
-
+    <div class="card" data-link="https://amandiocampos54-lgtm.github.io/SeacontrolTV/France/MyTvOnline3/TREX/config.enc3">
+      <div class="icon-card">
+        <img src="/SeacontrolTV/Images/input.png" alt="Input Code" class="icon-img">
       </div>
+      <h3>TREX-TRX7388</h3>
+      <p>Configuration MyTvOnline3</p>
     </div>
-  </section>
+
+  </div>
+</section>
 
 </main>
 
-<div class="footer">© <span id="year"></span> Seacontrol TV </div>
+<div class="footer">© <span id="year"></span> Seacontrol TV</div>
 <div class="copied" id="copied-msg"></div>
 
 <script>
@@ -196,19 +198,15 @@ cards.forEach(card => {
 
     if (navigator.clipboard && window.isSecureContext) {
       navigator.clipboard.writeText(link).then(() => {
-        showMsg(link);
+        copiedMsg.innerText = "Lien copié!";
+        copiedMsg.style.display = 'block';
+        setTimeout(() => copiedMsg.style.display = 'none', 3000);
       });
     } else {
-      prompt('Copiez le lien :', link);
+      prompt('Copiez le lien:', link);
     }
   });
 });
-
-function showMsg(link) {
-  copiedMsg.innerText = "Lien copié : " + link;
-  copiedMsg.style.display = 'block';
-  setTimeout(() => copiedMsg.style.display = 'none', 3000);
-}
 </script>
 
 </body>
