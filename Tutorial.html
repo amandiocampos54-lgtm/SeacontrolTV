@@ -1,1 +1,152 @@
-ds
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seacontrol TV - Instruções</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #0f172a;
+  color: #f1f5f9;
+}
+
+header {
+  text-align: center;
+  padding: 40px 20px;
+  color: white;
+  background: linear-gradient(135deg, #007A33, #FF0000, #FFD700);
+}
+
+header img {
+  width: 120px;
+  margin-bottom: 10px;
+}
+
+nav {
+  margin-top: 20px;
+}
+
+nav a {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: 600;
+}
+
+main {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.card {
+  background: #1e293b;
+  border-radius: 14px;
+  padding: 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+}
+
+.icon-card {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.icon-img {
+  width: 130px;
+  height: 130px;
+  object-fit: contain;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+h2 {
+  color: #facc15;
+  margin-bottom: 10px;
+}
+
+.step {
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <img src="https://i.postimg.cc/SsWW8Kwt/Launcher-Logo.png" alt="Logo">
+  
+  <nav>
+    <a href="index.html">⬅ Voltar</a>
+  </nav>
+</header>
+
+<main>
+
+<h1>📺 Instruções de Instalação</h1>
+
+<div class="card">
+
+  <div class="icon-card">
+    <img src="/SeacontrolTV/Images/input.png" alt="Input Code" class="icon-img">
+  </div>
+
+  <h2>Como adicionar configuração</h2>
+
+  <div class="step">1️⃣ Abra a aplicação <strong>MyTvOnline</strong> no seu dispositivo.</div>
+
+  <div class="step">2️⃣ Vá a <strong>“Content Sources”</strong> ou <strong>“Sources”</strong>.</div>
+
+  <div class="step">3️⃣ Selecione <strong>“Add Source”</strong>.</div>
+
+  <div class="step">4️⃣ Escolha a opção <strong>“Input Code / URL”</strong>.</div>
+
+  <div class="step">5️⃣ Volte ao site Seacontrol TV e copie o link da configuração.</div>
+
+  <div class="step">6️⃣ Cole o link na aplicação.</div>
+
+  <div class="step">7️⃣ Guarde e aguarde o carregamento dos canais.</div>
+
+</div>
+
+<div class="card">
+
+  <h2>⚠️ Dicas importantes</h2>
+
+  <div class="step">✔ Certifique-se que tem ligação à internet.</div>
+
+  <div class="step">✔ Use sempre links atualizados do site.</div>
+
+  <div class="step">✔ Se não funcionar, teste outra configuração.</div>
+
+</div>
+
+</main>
+
+<div class="footer">© <span id="year"></span> Seacontrol TV</div>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
