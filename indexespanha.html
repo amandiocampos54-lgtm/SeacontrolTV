@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Seacontrol TV - España</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
 body {
   margin: 0;
@@ -18,7 +20,6 @@ header {
   padding: 40px 20px;
   color: white;
   background: linear-gradient(135deg, #ff0000, #ffcc00);
-  position: relative;
 }
 
 header img {
@@ -42,7 +43,7 @@ nav a {
   font-weight: 600;
   padding: 10px 20px;
   border-radius: 30px;
-  transition: background 0.3s, transform 0.2s;
+  transition: 0.3s;
 }
 
 nav a:hover {
@@ -71,34 +72,45 @@ h2 {
 
 .card {
   background: #1e293b;
-  border-radius: 16px;
-  padding: 20px;
+  border-radius: 14px;
+  padding: 16px;
   text-align: center;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.35);
   cursor: pointer;
-  transition: transform 0.2s, background 0.2s;
+  transition: 0.2s ease;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  background: #334155;
+  transform: translateY(-4px);
+  background: #273449;
 }
 
 .icon-card {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+/* ✅ ÍCONE 100px */
+.icon-img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.35));
 }
 
 .card h3 {
-  margin: 10px 0 5px;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
+  margin: 8px 0;
   color: #ffcc00;
+  font-weight: 600;
 }
 
 .card p {
-  margin: 0;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: #cbd5e1;
+  margin: 0;
 }
 
 .footer {
@@ -117,14 +129,16 @@ h2 {
   color: white;
   padding: 10px 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   display: none;
 }
 </style>
 </head>
+
 <body>
+
 <header>
   <img src="https://i.postimg.cc/SsWW8Kwt/Launcher-Logo.png" alt="Seacontrol TV Logo">
+
   <nav>
     <a href="index.html">⬅ Voltar</a>
     <a href="indexportugal.html">Portugal</a>
@@ -134,38 +148,50 @@ h2 {
 </header>
 
 <main>
-  <section>
-    <h2>MyTvOnline3 - Crystal</h2>
-    <div class="grid">
-      <div class="card" data-link="https://amandiocampos54-lgtm.github.io/SeacontrolTV/Espanha/MyTvOnline3/Crystal/config.enc3">
-        <div class="icon-card">📂</div>
-        <h3>Crystal-ES7388</h3>
-        <p>Configuração MyTvOnline3</p>
+
+<section>
+  <h2>MyTvOnline3 - Crystal</h2>
+
+  <div class="grid">
+
+    <div class="card" data-link="https://amandiocampos54-lgtm.github.io/SeacontrolTV/Espanha/MyTvOnline3/Crystal/config.enc3">
+      <div class="icon-card">
+        <img src="/SeacontrolTV/Images/input.png" alt="Input Code" class="icon-img">
       </div>
+      <h3>Crystal-ES7388</h3>
+      <p>Configuração MyTvOnline3</p>
     </div>
-  </section>
+
+  </div>
+</section>
+
 </main>
 
 <div class="footer">© <span id="year"></span> Seacontrol TV · GitHub Pages</div>
-<div class="copied" id="copied-msg">Link copiado!</div>
+<div class="copied" id="copied-msg"></div>
 
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
+
 const cards = document.querySelectorAll('.card');
 const copiedMsg = document.getElementById('copied-msg');
 
 cards.forEach(card => {
   card.addEventListener('click', () => {
     const link = card.dataset.link;
-    navigator.clipboard.writeText(link).then(() => {
-      copiedMsg.innerText = "Link copiado: " + link;
-      copiedMsg.style.display = 'block';
-      setTimeout(() => copiedMsg.style.display = 'none', 3000);
-    }).catch(() => {
-      prompt('Copie o link abaixo:', link);
-    });
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(link).then(() => {
+        copiedMsg.innerText = "Link copiado!";
+        copiedMsg.style.display = 'block';
+        setTimeout(() => copiedMsg.style.display = 'none', 3000);
+      });
+    } else {
+      prompt('Copie o link:', link);
+    }
   });
 });
 </script>
+
 </body>
 </html>
