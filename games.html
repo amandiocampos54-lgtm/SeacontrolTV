@@ -3,194 +3,185 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seacontrol TV - Jogos</title>
+<title>Seacontrol TV - Jogos PRO</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-@keyframes gradientAnimation {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
+  color: white;
   text-align: center;
-  color: #fff;
-  overflow-x: hidden;
   background: linear-gradient(-45deg, #00c6ff, #0072ff, #00e0ff, #005f99);
   background-size: 400% 400%;
-  animation: gradientAnimation 20s ease infinite;
+  animation: bg 15s ease infinite;
+}
+@keyframes bg {
+  0% {background-position:0%}
+  50% {background-position:100%}
+  100% {background-position:0%}
 }
 
-header img {
-  max-width: 220px;
-  margin: 30px 0;
-}
-
-/* CONTAINER DOS JOGOS */
 .container {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  width: 90%;
-  max-width: 400px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  width:90%;
+  max-width:420px;
+  margin:auto;
 }
 
-/* CARD JOGO */
 .jogo {
   background: rgba(255,255,255,0.2);
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  padding:15px;
+  border-radius:15px;
 }
 
-/* BOTÕES */
 button {
-  margin-top: 10px;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 20px;
-  font-weight: 600;
-  cursor: pointer;
+  padding:8px 12px;
+  border:none;
+  border-radius:15px;
+  margin:5px;
+  cursor:pointer;
 }
 
-input {
-  padding: 8px;
-  border-radius: 10px;
-  border: none;
-  margin-top: 10px;
+canvas {
+  background:black;
+  border-radius:10px;
 }
 
-/* VOLTAR */
-.voltar {
-  margin-top: 30px;
-  text-decoration: none;
-  color: white;
-  font-weight: 600;
-  background: rgba(255,255,255,0.2);
-  padding: 10px 20px;
-  border-radius: 30px;
+/* memória */
+.grid {
+  display:grid;
+  grid-template-columns: repeat(4,1fr);
+  gap:5px;
 }
 
-/* PARTÍCULAS */
-.particle {
-  position: absolute;
-  background: white;
-  border-radius: 50%;
-  opacity: 0.6;
-  pointer-events: none;
-  animation: floatParticle linear infinite;
-}
-
-@keyframes floatParticle {
-  0% { transform: translateY(0); opacity: 0.6; }
-  100% { transform: translateY(-100vh); opacity: 0; }
+.card {
+  background:white;
+  height:50px;
+  border-radius:5px;
+  cursor:pointer;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <img src="https://i.postimg.cc/SsWW8Kwt/Launcher-Logo.png">
-</header>
+<h1>🎮 Arcade PRO</h1>
 
 <div class="container">
 
-  <!-- CLIQUE RÁPIDO -->
-  <div class="jogo">
-    <h3>⚡ Clique Rápido</h3>
-    <p>Pontos: <span id="pontos">0</span></p>
-    <button onclick="clicar()">Clica!</button>
-  </div>
+<!-- ⚡ CLICK GAME -->
+<div class="jogo">
+<h3>⚡ Clique em 5s</h3>
+<p>Pontos: <span id="score">0</span></p>
+<button onclick="startClick()">Start</button>
+</div>
 
-  <!-- ADIVINHAR -->
-  <div class="jogo">
-    <h3>🔢 Adivinha o Número</h3>
-    <input type="number" id="palpite" placeholder="1 a 10">
-    <br>
-    <button onclick="adivinhar()">Tentar</button>
-    <p id="res"></p>
-  </div>
+<!-- 🐍 SNAKE -->
+<div class="jogo">
+<h3>🐍 Snake</h3>
+<canvas id="snake" width="300" height="300"></canvas>
+</div>
 
-  <!-- PEDRA PAPEL TESOURA -->
-  <div class="jogo">
-    <h3>✊ Pedra Papel Tesoura</h3>
-    <button onclick="ppt('pedra')">Pedra</button>
-    <button onclick="ppt('papel')">Papel</button>
-    <button onclick="ppt('tesoura')">Tesoura</button>
-    <p id="resultado"></p>
-  </div>
+<!-- 🧠 MEMÓRIA -->
+<div class="jogo">
+<h3>🧠 Memória</h3>
+<div class="grid" id="grid"></div>
+</div>
 
 </div>
 
-<a href="index.html" class="voltar">⬅ Voltar</a>
-
 <script>
-// Clique rápido
-let pontos = 0;
-function clicar() {
-  pontos++;
-  document.getElementById("pontos").innerText = pontos;
-}
+// CLICK GAME
+let score=0, playing=false;
 
-// Adivinhar número
-let numero = Math.floor(Math.random() * 10) + 1;
-
-function adivinhar() {
-  let palpite = document.getElementById("palpite").value;
-  let res = document.getElementById("res");
-
-  if (palpite == numero) {
-    res.innerText = "🎉 Acertaste!";
-  } else {
-    res.innerText = "❌ Era " + numero;
+function startClick(){
+  score=0;
+  playing=true;
+  document.body.onclick=()=>{
+    if(playing){
+      score++;
+      document.getElementById("score").innerText=score;
+    }
   }
-
-  numero = Math.floor(Math.random() * 10) + 1;
+  setTimeout(()=>{
+    playing=false;
+    alert("Fim! Pontos: "+score);
+    document.body.onclick=null;
+  },5000);
 }
 
-// Pedra papel tesoura
-function ppt(escolha) {
-  let opcoes = ["pedra", "papel", "tesoura"];
-  let cpu = opcoes[Math.floor(Math.random() * 3)];
-  let r = "";
+// SNAKE
+const canvas=document.getElementById("snake");
+const ctx=canvas.getContext("2d");
 
-  if (escolha === cpu) r = "Empate!";
-  else if (
-    (escolha === "pedra" && cpu === "tesoura") ||
-    (escolha === "papel" && cpu === "pedra") ||
-    (escolha === "tesoura" && cpu === "papel")
-  ) r = "Ganhaste!";
-  else r = "Perdeste!";
+let snake=[{x:10,y:10}];
+let food={x:5,y:5};
+let dx=1, dy=0;
 
-  document.getElementById("resultado").innerText =
-    "CPU: " + cpu + " → " + r;
+document.addEventListener("keydown",e=>{
+  if(e.key==="ArrowUp"){dx=0;dy=-1}
+  if(e.key==="ArrowDown"){dx=0;dy=1}
+  if(e.key==="ArrowLeft"){dx=-1;dy=0}
+  if(e.key==="ArrowRight"){dx=1;dy=0}
+});
+
+function drawSnake(){
+  ctx.fillStyle="black";
+  ctx.fillRect(0,0,300,300);
+
+  ctx.fillStyle="lime";
+  snake.forEach(s=>ctx.fillRect(s.x*15,s.y*15,14,14));
+
+  ctx.fillStyle="red";
+  ctx.fillRect(food.x*15,food.y*15,14,14);
+
+  let head={x:snake[0].x+dx,y:snake[0].y+dy};
+  snake.unshift(head);
+
+  if(head.x===food.x && head.y===food.y){
+    food.x=Math.floor(Math.random()*20);
+    food.y=Math.floor(Math.random()*20);
+  } else {
+    snake.pop();
+  }
 }
+setInterval(drawSnake,150);
 
-// Partículas
-for (let i = 0; i < 40; i++) {
-  const p = document.createElement("div");
-  p.className = "particle";
+// MEMÓRIA
+const grid=document.getElementById("grid");
+let valores=[1,1,2,2,3,3,4,4];
+valores.sort(()=>Math.random()-0.5);
 
-  const size = Math.random() * 4 + 2;
-  p.style.width = size + "px";
-  p.style.height = size + "px";
+let selected=[];
 
-  p.style.left = Math.random() * 100 + "vw";
-  p.style.top = Math.random() * 100 + "vh";
+valores.forEach(v=>{
+  const div=document.createElement("div");
+  div.className="card";
+  div.dataset.valor=v;
 
-  p.style.animationDuration = (10 + Math.random() * 15) + "s";
+  div.onclick=()=>{
+    if(div.innerText) return;
 
-  document.body.appendChild(p);
-}
+    div.innerText=v;
+    selected.push(div);
+
+    if(selected.length===2){
+      setTimeout(()=>{
+        if(selected[0].dataset.valor!==selected[1].dataset.valor){
+          selected[0].innerText="";
+          selected[1].innerText="";
+        }
+        selected=[];
+      },500);
+    }
+  };
+
+  grid.appendChild(div);
+});
 </script>
 
 </body>
