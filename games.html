@@ -1,188 +1,179 @@
+```html
 <!DOCTYPE html>
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seacontrol TV - Jogos PRO</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
+<title>Bubble Trouble Clone</title>
 <style>
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  color: white;
-  text-align: center;
-  background: linear-gradient(-45deg, #00c6ff, #0072ff, #00e0ff, #005f99);
-  background-size: 400% 400%;
-  animation: bg 15s ease infinite;
-}
-@keyframes bg {
-  0% {background-position:0%}
-  50% {background-position:100%}
-  100% {background-position:0%}
-}
-
-.container {
-  display:flex;
-  flex-direction:column;
-  gap:20px;
-  width:90%;
-  max-width:420px;
-  margin:auto;
-}
-
-.jogo {
-  background: rgba(255,255,255,0.2);
-  padding:15px;
-  border-radius:15px;
-}
-
-button {
-  padding:8px 12px;
-  border:none;
-  border-radius:15px;
-  margin:5px;
-  cursor:pointer;
-}
-
-canvas {
-  background:black;
-  border-radius:10px;
-}
-
-/* memória */
-.grid {
-  display:grid;
-  grid-template-columns: repeat(4,1fr);
-  gap:5px;
-}
-
-.card {
-  background:white;
-  height:50px;
-  border-radius:5px;
-  cursor:pointer;
-}
+  body { margin:0; background:#111; color:white; font-family:sans-serif; text-align:center; }
+  canvas { background:#222; display:block; margin:10px auto; }
 </style>
 </head>
-
 <body>
 
-<h1>🎮 Arcade PRO</h1>
-
-<div class="container">
-
-<!-- ⚡ CLICK GAME -->
-<div class="jogo">
-<h3>⚡ Clique em 5s</h3>
-<p>Pontos: <span id="score">0</span></p>
-<button onclick="startClick()">Start</button>
-</div>
-
-<!-- 🐍 SNAKE -->
-<div class="jogo">
-<h3>🐍 Snake</h3>
-<canvas id="snake" width="300" height="300"></canvas>
-</div>
-
-<!-- 🧠 MEMÓRIA -->
-<div class="jogo">
-<h3>🧠 Memória</h3>
-<div class="grid" id="grid"></div>
-</div>
-
-</div>
+<h2>Bubble Trouble Clone</h2>
+<p>← → mover | espaço disparar</p>
+<canvas id="game" width="700" height="450"></canvas>
 
 <script>
-// CLICK GAME
-let score=0, playing=false;
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
 
-function startClick(){
-  score=0;
-  playing=true;
-  document.body.onclick=()=>{
-    if(playing){
-      score++;
-      document.getElementById("score").innerText=score;
-    }
+let gameState = "menu";
+let score = 0;
+let level = 1;
+let lives = 3;
+
+const player = { x: 330, y: 410, w: 40, h: 20, speed: 5 };
+let rope = null;
+let balls = [];
+
+const gravity = 0.25;
+
+// INPUT
+let keys = {};
+document.addEventListener("keydown", e => {
+  keys[e.key] = true;
+  if (gameState === "menu") startGame();
+  if (e.key === " " && !rope && gameState === "playing") {
+    rope = { x: player.x + player.w/2, y: player.y, h: 0 };
   }
-  setTimeout(()=>{
-    playing=false;
-    alert("Fim! Pontos: "+score);
-    document.body.onclick=null;
-  },5000);
+});
+document.addEventListener("keyup", e => keys[e.key] = false);
+
+// START
+function startGame() {
+  score = 0;
+  level = 1;
+  lives = 3;
+  gameState = "playing";
+  spawnLevel();
 }
 
-// SNAKE
-const canvas=document.getElementById("snake");
-const ctx=canvas.getContext("2d");
-
-let snake=[{x:10,y:10}];
-let food={x:5,y:5};
-let dx=1, dy=0;
-
-document.addEventListener("keydown",e=>{
-  if(e.key==="ArrowUp"){dx=0;dy=-1}
-  if(e.key==="ArrowDown"){dx=0;dy=1}
-  if(e.key==="ArrowLeft"){dx=-1;dy=0}
-  if(e.key==="ArrowRight"){dx=1;dy=0}
-});
-
-function drawSnake(){
-  ctx.fillStyle="black";
-  ctx.fillRect(0,0,300,300);
-
-  ctx.fillStyle="lime";
-  snake.forEach(s=>ctx.fillRect(s.x*15,s.y*15,14,14));
-
-  ctx.fillStyle="red";
-  ctx.fillRect(food.x*15,food.y*15,14,14);
-
-  let head={x:snake[0].x+dx,y:snake[0].y+dy};
-  snake.unshift(head);
-
-  if(head.x===food.x && head.y===food.y){
-    food.x=Math.floor(Math.random()*20);
-    food.y=Math.floor(Math.random()*20);
-  } else {
-    snake.pop();
-  }
+// SPAWN LEVEL
+function spawnLevel() {
+  balls = [{
+    x: 200 + Math.random()*300,
+    y: 200,
+    r: 40,
+    dx: 3,
+    dy: -4
+  }];
 }
-setInterval(drawSnake,150);
 
-// MEMÓRIA
-const grid=document.getElementById("grid");
-let valores=[1,1,2,2,3,3,4,4];
-valores.sort(()=>Math.random()-0.5);
+// UPDATE
+function update() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
 
-let selected=[];
+  if (gameState === "menu") {
+    drawText("Pressiona qualquer tecla", 200);
+    return requestAnimationFrame(update);
+  }
 
-valores.forEach(v=>{
-  const div=document.createElement("div");
-  div.className="card";
-  div.dataset.valor=v;
+  if (gameState === "gameover") {
+    drawText("GAME OVER", 180);
+    drawText("Score: " + score, 230);
+    drawText("Pressiona para reiniciar", 280);
+    return requestAnimationFrame(update);
+  }
 
-  div.onclick=()=>{
-    if(div.innerText) return;
+  // PLAYER
+  if (keys["ArrowLeft"]) player.x -= player.speed;
+  if (keys["ArrowRight"]) player.x += player.speed;
 
-    div.innerText=v;
-    selected.push(div);
+  player.x = Math.max(0, Math.min(canvas.width - player.w, player.x));
 
-    if(selected.length===2){
-      setTimeout(()=>{
-        if(selected[0].dataset.valor!==selected[1].dataset.valor){
-          selected[0].innerText="";
-          selected[1].innerText="";
-        }
-        selected=[];
-      },500);
+  ctx.fillRect(player.x, player.y, player.w, player.h);
+
+  // ROPE
+  if (rope) {
+    rope.h += 8;
+    ctx.fillRect(rope.x, rope.y - rope.h, 2, rope.h);
+
+    if (rope.y - rope.h <= 0) rope = null;
+  }
+
+  // BALLS
+  balls.forEach((b, i) => {
+    b.x += b.dx;
+    b.y += b.dy;
+    b.dy += gravity;
+
+    // chão
+    if (b.y + b.r > canvas.height) {
+      b.y = canvas.height - b.r;
+      b.dy *= -0.9;
     }
-  };
 
-  grid.appendChild(div);
-});
+    // paredes
+    if (b.x - b.r < 0 || b.x + b.r > canvas.width) {
+      b.dx *= -1;
+    }
+
+    // desenhar
+    ctx.beginPath();
+    ctx.arc(b.x, b.y, b.r, 0, Math.PI*2);
+    ctx.fill();
+
+    // colisão jogador
+    if (
+      b.x + b.r > player.x &&
+      b.x - b.r < player.x + player.w &&
+      b.y + b.r > player.y
+    ) {
+      lives--;
+      if (lives <= 0) {
+        gameState = "gameover";
+      } else {
+        spawnLevel();
+      }
+    }
+
+    // colisão rope
+    if (rope && Math.abs(b.x - rope.x) < b.r &&
+        rope.y - rope.h < b.y + b.r) {
+
+      score += 10;
+
+      if (b.r > 15) {
+        balls.push(
+          { x:b.x, y:b.y, r:b.r/2, dx:3, dy:-5 },
+          { x:b.x, y:b.y, r:b.r/2, dx:-3, dy:-5 }
+        );
+      }
+
+      balls.splice(i,1);
+      rope = null;
+    }
+  });
+
+  // LEVEL CLEAR
+  if (balls.length === 0) {
+    level++;
+    spawnLevel();
+  }
+
+  drawUI();
+
+  requestAnimationFrame(update);
+}
+
+// UI
+function drawUI() {
+  ctx.fillText("Score: " + score, 10, 20);
+  ctx.fillText("Vidas: " + lives, 10, 40);
+  ctx.fillText("Level: " + level, 10, 60);
+}
+
+function drawText(text, y) {
+  ctx.font = "20px sans-serif";
+  ctx.fillText(text, 200, y);
+}
+
+// START LOOP
+update();
 </script>
 
 </body>
 </html>
+```
