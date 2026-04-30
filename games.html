@@ -1,24 +1,43 @@
-```html id="bubble_trouble_max">
+```html id="sprites_version">
 <!DOCTYPE html>
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
-<title>Bubble Trouble MAX</title>
+<title>Bubble Trouble Sprite Edition</title>
 <style>
-body { margin:0; background:#0d0d0d; color:#fff; font-family:Arial; text-align:center;}
-canvas { background:linear-gradient(#1a1a1a,#111); display:block; margin:10px auto; border:2px solid #333;}
+body { margin:0; background:#0d0d0d; text-align:center; color:white; }
+canvas { background:#111; display:block; margin:auto; }
 </style>
 </head>
 <body>
 
-<h3>Bubble Trouble MAX</h3>
-<p>← → mover | espaço disparar</p>
+<h3>Bubble Trouble (Sprite Edition)</h3>
 <canvas id="game" width="900" height="520"></canvas>
 
 <script>
 const c = document.getElementById("game");
 const ctx = c.getContext("2d");
 
+// === SPRITES (inline base64 simples) ===
+const playerImg = new Image();
+playerImg.src = "data:image/svg+xml;base64," + btoa(`
+<svg xmlns='http://www.w3.org/2000/svg' width='40' height='20'>
+<rect width='40' height='20' fill='lime'/>
+<circle cx='10' cy='10' r='5' fill='black'/>
+<circle cx='30' cy='10' r='5' fill='black'/>
+</svg>`);
+
+function drawBall(x,y,r){
+  let grad = ctx.createRadialGradient(x,y,5,x,y,r);
+  grad.addColorStop(0,"#fff");
+  grad.addColorStop(1,"hsl("+r*5+",80%,50%)");
+  ctx.fillStyle = grad;
+  ctx.beginPath();
+  ctx.arc(x,y,r,0,Math.PI*2);
+  ctx.fill();
+}
+
+// GAME STATE
 let state="menu";
 let player, balls, rope, particles, powerups;
 let score, lives, level, slowTimer, multiShot;
@@ -27,16 +46,10 @@ const gravity=0.35;
 
 // INIT
 function init(){
-  player={x:430,y:480,w:40,h:20,speed:6};
-  balls=[];
-  rope=null;
-  particles=[];
-  powerups=[];
-  score=0;
-  lives=3;
-  level=1;
-  slowTimer=0;
-  multiShot=0;
+  player={x:430,y:480,w:40,h:20,speed:6,frame:0};
+  balls=[]; rope=null; particles=[]; powerups=[];
+  score=0; lives=3; level=1;
+  slowTimer=0; multiShot=0;
 }
 
 // SPAWN
@@ -57,20 +70,14 @@ function spawn(){
 let keys={};
 addEventListener("keydown",e=>{
   keys[e.key]=true;
-  if(state!=="playing"){start();}
-  if(e.key===" " && !rope && state==="playing"){
-    shoot();
-  }
+  if(state!=="playing") start();
+  if(e.key===" " && !rope && state==="playing") shoot();
 });
 addEventListener("keyup",e=>keys[e.key]=false);
 
 // SHOOT
 function shoot(){
   rope={x:player.x+player.w/2,y:player.y,h:0};
-  if(multiShot>0){
-    setTimeout(()=>rope={x:player.x+player.w/2-10,y:player.y,h:0},50);
-    setTimeout(()=>rope={x:player.x+player.w/2+10,y:player.y,h:0},100);
-  }
 }
 
 // START
@@ -96,19 +103,19 @@ function loop(){
     return requestAnimationFrame(loop);
   }
 
-  // PLAYER
+  // PLAYER MOVE
   if(keys["ArrowLeft"]) player.x-=player.speed;
   if(keys["ArrowRight"]) player.x+=player.speed;
   player.x=Math.max(0,Math.min(c.width-player.w,player.x));
 
-  ctx.fillStyle="#0f0";
-  ctx.fillRect(player.x,player.y,player.w,player.h);
+  // PLAYER DRAW (sprite)
+  ctx.drawImage(playerImg, player.x, player.y);
 
   // ROPE
   if(rope){
     rope.h+=12;
     ctx.fillStyle="#fff";
-    ctx.fillRect(rope.x,rope.y-rope.h,3,rope.h);
+    ctx.fillRect(rope.x,rope.y-rope.h,2,rope.h);
     if(rope.y-rope.h<0) rope=null;
   }
 
@@ -127,31 +134,27 @@ function loop(){
 
     if(b.x-b.r<0||b.x+b.r>c.width) b.dx*=-1;
 
-    ctx.beginPath();
-    ctx.fillStyle="hsl("+b.r*5+",80%,60%)";
-    ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
-    ctx.fill();
+    drawBall(b.x,b.y,b.r);
 
-    // PLAYER HIT
+    // HIT PLAYER
     if(
       b.x+b.r>player.x &&
       b.x-b.r<player.x+player.w &&
       b.y+b.r>player.y
     ){
       lives--;
-      if(lives<=0){state="gameover";}
+      if(lives<=0) state="gameover";
       else spawn();
     }
 
-    // ROPE HIT
+    // HIT ROPE
     if(rope &&
       Math.abs(b.x-rope.x)<b.r &&
       rope.y-rope.h<b.y+b.r
     ){
-      explode(b.x,b.y,b.r);
+      explode(b.x,b.y);
       score+=10;
 
-      // powerup drop
       if(Math.random()<0.2){
         powerups.push({x:b.x,y:b.y,type:Math.random()<0.5?"slow":"multi"});
       }
@@ -173,10 +176,8 @@ function loop(){
     p.x+=p.dx;
     p.y+=p.dy;
     p.life--;
-
     ctx.fillStyle="orange";
-    ctx.fillRect(p.x,p.y,3,3);
-
+    ctx.fillRect(p.x,p.y,2,2);
     if(p.life<=0) particles.splice(i,1);
   });
 
@@ -184,7 +185,7 @@ function loop(){
   powerups.forEach((p,i)=>{
     p.y+=2;
     ctx.fillStyle=p.type==="slow"?"cyan":"magenta";
-    ctx.fillRect(p.x,p.y,10,10);
+    ctx.fillRect(p.x,p.y,12,12);
 
     if(
       p.x>player.x &&
@@ -215,8 +216,8 @@ function loop(){
   requestAnimationFrame(loop);
 }
 
-// PARTICLE EFFECT
-function explode(x,y,r){
+// EFFECT
+function explode(x,y){
   for(let i=0;i<20;i++){
     particles.push({
       x:x,y:y,
@@ -227,7 +228,6 @@ function explode(x,y,r){
   }
 }
 
-// TEXT
 function text(t,y){
   ctx.font="24px Arial";
   ctx.fillText(t,300,y);
