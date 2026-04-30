@@ -1,177 +1,239 @@
-```html
+```html id="bubble_trouble_max">
 <!DOCTYPE html>
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
-<title>Bubble Trouble Clone</title>
+<title>Bubble Trouble MAX</title>
 <style>
-  body { margin:0; background:#111; color:white; font-family:sans-serif; text-align:center; }
-  canvas { background:#222; display:block; margin:10px auto; }
+body { margin:0; background:#0d0d0d; color:#fff; font-family:Arial; text-align:center;}
+canvas { background:linear-gradient(#1a1a1a,#111); display:block; margin:10px auto; border:2px solid #333;}
 </style>
 </head>
 <body>
 
-<h2>Bubble Trouble Clone</h2>
+<h3>Bubble Trouble MAX</h3>
 <p>← → mover | espaço disparar</p>
-<canvas id="game" width="700" height="450"></canvas>
+<canvas id="game" width="900" height="520"></canvas>
 
 <script>
-const canvas = document.getElementById("game");
-const ctx = canvas.getContext("2d");
+const c = document.getElementById("game");
+const ctx = c.getContext("2d");
 
-let gameState = "menu";
-let score = 0;
-let level = 1;
-let lives = 3;
+let state="menu";
+let player, balls, rope, particles, powerups;
+let score, lives, level, slowTimer, multiShot;
 
-const player = { x: 330, y: 410, w: 40, h: 20, speed: 5 };
-let rope = null;
-let balls = [];
+const gravity=0.35;
 
-const gravity = 0.25;
+// INIT
+function init(){
+  player={x:430,y:480,w:40,h:20,speed:6};
+  balls=[];
+  rope=null;
+  particles=[];
+  powerups=[];
+  score=0;
+  lives=3;
+  level=1;
+  slowTimer=0;
+  multiShot=0;
+}
+
+// SPAWN
+function spawn(){
+  balls=[];
+  for(let i=0;i<level;i++){
+    balls.push({
+      x:150+i*150,
+      y:200,
+      r:35,
+      dx:(Math.random()>0.5?1:-1)*(3+level*0.3),
+      dy:-6
+    });
+  }
+}
 
 // INPUT
-let keys = {};
-document.addEventListener("keydown", e => {
-  keys[e.key] = true;
-  if (gameState === "menu") startGame();
-  if (e.key === " " && !rope && gameState === "playing") {
-    rope = { x: player.x + player.w/2, y: player.y, h: 0 };
+let keys={};
+addEventListener("keydown",e=>{
+  keys[e.key]=true;
+  if(state!=="playing"){start();}
+  if(e.key===" " && !rope && state==="playing"){
+    shoot();
   }
 });
-document.addEventListener("keyup", e => keys[e.key] = false);
+addEventListener("keyup",e=>keys[e.key]=false);
+
+// SHOOT
+function shoot(){
+  rope={x:player.x+player.w/2,y:player.y,h:0};
+  if(multiShot>0){
+    setTimeout(()=>rope={x:player.x+player.w/2-10,y:player.y,h:0},50);
+    setTimeout(()=>rope={x:player.x+player.w/2+10,y:player.y,h:0},100);
+  }
+}
 
 // START
-function startGame() {
-  score = 0;
-  level = 1;
-  lives = 3;
-  gameState = "playing";
-  spawnLevel();
+function start(){
+  init();
+  spawn();
+  state="playing";
 }
 
-// SPAWN LEVEL
-function spawnLevel() {
-  balls = [{
-    x: 200 + Math.random()*300,
-    y: 200,
-    r: 40,
-    dx: 3,
-    dy: -4
-  }];
-}
+// LOOP
+function loop(){
+  ctx.clearRect(0,0,c.width,c.height);
 
-// UPDATE
-function update() {
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-
-  if (gameState === "menu") {
-    drawText("Pressiona qualquer tecla", 200);
-    return requestAnimationFrame(update);
+  if(state==="menu"){
+    text("Pressiona qualquer tecla",240);
+    return requestAnimationFrame(loop);
   }
 
-  if (gameState === "gameover") {
-    drawText("GAME OVER", 180);
-    drawText("Score: " + score, 230);
-    drawText("Pressiona para reiniciar", 280);
-    return requestAnimationFrame(update);
+  if(state==="gameover"){
+    text("GAME OVER",200);
+    text("Score: "+score,240);
+    text("Pressiona para jogar",280);
+    return requestAnimationFrame(loop);
   }
 
   // PLAYER
-  if (keys["ArrowLeft"]) player.x -= player.speed;
-  if (keys["ArrowRight"]) player.x += player.speed;
+  if(keys["ArrowLeft"]) player.x-=player.speed;
+  if(keys["ArrowRight"]) player.x+=player.speed;
+  player.x=Math.max(0,Math.min(c.width-player.w,player.x));
 
-  player.x = Math.max(0, Math.min(canvas.width - player.w, player.x));
-
-  ctx.fillRect(player.x, player.y, player.w, player.h);
+  ctx.fillStyle="#0f0";
+  ctx.fillRect(player.x,player.y,player.w,player.h);
 
   // ROPE
-  if (rope) {
-    rope.h += 8;
-    ctx.fillRect(rope.x, rope.y - rope.h, 2, rope.h);
-
-    if (rope.y - rope.h <= 0) rope = null;
+  if(rope){
+    rope.h+=12;
+    ctx.fillStyle="#fff";
+    ctx.fillRect(rope.x,rope.y-rope.h,3,rope.h);
+    if(rope.y-rope.h<0) rope=null;
   }
 
   // BALLS
-  balls.forEach((b, i) => {
-    b.x += b.dx;
-    b.y += b.dy;
-    b.dy += gravity;
+  balls.forEach((b,i)=>{
+    let speedMod = slowTimer>0?0.5:1;
 
-    // chão
-    if (b.y + b.r > canvas.height) {
-      b.y = canvas.height - b.r;
-      b.dy *= -0.9;
+    b.x+=b.dx*speedMod;
+    b.y+=b.dy*speedMod;
+    b.dy+=gravity;
+
+    if(b.y+b.r>c.height){
+      b.y=c.height-b.r;
+      b.dy=-Math.abs(b.dy)*0.9;
     }
 
-    // paredes
-    if (b.x - b.r < 0 || b.x + b.r > canvas.width) {
-      b.dx *= -1;
-    }
+    if(b.x-b.r<0||b.x+b.r>c.width) b.dx*=-1;
 
-    // desenhar
     ctx.beginPath();
-    ctx.arc(b.x, b.y, b.r, 0, Math.PI*2);
+    ctx.fillStyle="hsl("+b.r*5+",80%,60%)";
+    ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
     ctx.fill();
 
-    // colisão jogador
-    if (
-      b.x + b.r > player.x &&
-      b.x - b.r < player.x + player.w &&
-      b.y + b.r > player.y
-    ) {
+    // PLAYER HIT
+    if(
+      b.x+b.r>player.x &&
+      b.x-b.r<player.x+player.w &&
+      b.y+b.r>player.y
+    ){
       lives--;
-      if (lives <= 0) {
-        gameState = "gameover";
-      } else {
-        spawnLevel();
-      }
+      if(lives<=0){state="gameover";}
+      else spawn();
     }
 
-    // colisão rope
-    if (rope && Math.abs(b.x - rope.x) < b.r &&
-        rope.y - rope.h < b.y + b.r) {
+    // ROPE HIT
+    if(rope &&
+      Math.abs(b.x-rope.x)<b.r &&
+      rope.y-rope.h<b.y+b.r
+    ){
+      explode(b.x,b.y,b.r);
+      score+=10;
 
-      score += 10;
+      // powerup drop
+      if(Math.random()<0.2){
+        powerups.push({x:b.x,y:b.y,type:Math.random()<0.5?"slow":"multi"});
+      }
 
-      if (b.r > 15) {
+      if(b.r>12){
         balls.push(
-          { x:b.x, y:b.y, r:b.r/2, dx:3, dy:-5 },
-          { x:b.x, y:b.y, r:b.r/2, dx:-3, dy:-5 }
+          {x:b.x,y:b.y,r:b.r/2,dx:3,dy:-6},
+          {x:b.x,y:b.y,r:b.r/2,dx:-3,dy:-6}
         );
       }
 
       balls.splice(i,1);
-      rope = null;
+      rope=null;
     }
   });
 
+  // PARTICLES
+  particles.forEach((p,i)=>{
+    p.x+=p.dx;
+    p.y+=p.dy;
+    p.life--;
+
+    ctx.fillStyle="orange";
+    ctx.fillRect(p.x,p.y,3,3);
+
+    if(p.life<=0) particles.splice(i,1);
+  });
+
+  // POWERUPS
+  powerups.forEach((p,i)=>{
+    p.y+=2;
+    ctx.fillStyle=p.type==="slow"?"cyan":"magenta";
+    ctx.fillRect(p.x,p.y,10,10);
+
+    if(
+      p.x>player.x &&
+      p.x<player.x+player.w &&
+      p.y>player.y
+    ){
+      if(p.type==="slow") slowTimer=300;
+      if(p.type==="multi") multiShot=300;
+      powerups.splice(i,1);
+    }
+  });
+
+  if(slowTimer>0) slowTimer--;
+  if(multiShot>0) multiShot--;
+
   // LEVEL CLEAR
-  if (balls.length === 0) {
+  if(balls.length===0){
     level++;
-    spawnLevel();
+    spawn();
   }
 
-  drawUI();
+  // UI
+  ctx.fillStyle="#fff";
+  ctx.fillText("Score: "+score,10,20);
+  ctx.fillText("Vidas: "+lives,10,40);
+  ctx.fillText("Level: "+level,10,60);
 
-  requestAnimationFrame(update);
+  requestAnimationFrame(loop);
 }
 
-// UI
-function drawUI() {
-  ctx.fillText("Score: " + score, 10, 20);
-  ctx.fillText("Vidas: " + lives, 10, 40);
-  ctx.fillText("Level: " + level, 10, 60);
+// PARTICLE EFFECT
+function explode(x,y,r){
+  for(let i=0;i<20;i++){
+    particles.push({
+      x:x,y:y,
+      dx:(Math.random()-0.5)*4,
+      dy:(Math.random()-0.5)*4,
+      life:30
+    });
+  }
 }
 
-function drawText(text, y) {
-  ctx.font = "20px sans-serif";
-  ctx.fillText(text, 200, y);
+// TEXT
+function text(t,y){
+  ctx.font="24px Arial";
+  ctx.fillText(t,300,y);
 }
 
-// START LOOP
-update();
+loop();
 </script>
 
 </body>
